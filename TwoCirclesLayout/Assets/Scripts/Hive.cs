@@ -6,6 +6,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.Windows;
 
 public class Hive : MonoBehaviour
 {
@@ -62,22 +63,6 @@ public class Hive : MonoBehaviour
 
     private bool OnInput(RawInput input)
     {
-        if (connectedDevices.ContainsKey(input.Header.Device))
-        {
-            if (input.Header.Type == RawInputType.Mouse && input.Header.Device.ToInt32() == 65599)
-            {
-                var leftTrackball = input.Data.Mouse;
-                Debug.Log($"MouseX of Left Trackball is: {leftTrackball.LastX}");
-                Debug.Log($"MouseY of Left Trackball is: {leftTrackball.LastY}");
-            }
-            else if (input.Header.Type == RawInputType.Mouse && input.Header.Device.ToInt32() == 65597)
-            {
-                var rightTrackball = input.Data.Mouse;
-                Debug.Log($"MouseX of Right Trackball is: {rightTrackball.LastX}");
-                Debug.Log($"MouseY of Right Trackball is: {rightTrackball.LastY}");
-            }
-        }
-
         return true;
     }
 
@@ -90,15 +75,6 @@ public class Hive : MonoBehaviour
     {
         connectedDevices.TryRemove(device.hDevice, out _);
     }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -161,16 +137,24 @@ public class Hive : MonoBehaviour
 		// Update the selection cooldown
 		lastSelectionTime -= Time.deltaTime;
 
-		float mouseX = Input.GetAxis ("Mouse X");
-		float mouseY = Input.GetAxis ("Mouse Y");
-		float sqrLength = mouseX * mouseX + mouseY * mouseY;
+        if (connectedDevices.ContainsKey(input.Header.Device))
+        {
+            if (input.Header.Type == RawInputType.Mouse && input.Header.Device.ToInt32() == 65599)
+            {
+                var leftTrackball = input.Data.Mouse;
+                Debug.Log($"MouseX of Left Trackball is: {leftTrackball.LastX}");
+                Debug.Log($"MouseY of Left Trackball is: {leftTrackball.LastY}");
+            }
+            else if (input.Header.Type == RawInputType.Mouse && input.Header.Device.ToInt32() == 65597)
+            {
+                var rightTrackball = input.Data.Mouse;
+                Debug.Log($"MouseX of Right Trackball is: {rightTrackball.LastX}");
+                Debug.Log($"MouseY of Right Trackball is: {rightTrackball.LastY}");
+            }
+        }
 
-		float angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
-		if (angle < 0)
-			angle += 360;
 
-
-		if (lastSelectionTime <= 0.0f && sqrLength > moveThreshold) 
+        if (lastSelectionTime <= 0.0f && sqrLength > moveThreshold) 
 		{
 			SelectionChangeL(angle);
 			SelectionChangeR(angle);
