@@ -128,25 +128,41 @@ public class Hive : MonoBehaviour
 
 	public void Update()
 	{
+		// Update the selection cooldown
+		lastSelectionTime -= Time.deltaTime;
+
 		if (inputQueue.TryDequeue(out var val))
 		{
 			if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == 65599)
 			{
 				var leftTrackball = val.Data.Mouse;
-				Debug.Log($"MouseX of Left Trackball is: {leftTrackball.LastX}");
-				Debug.Log($"MouseY of Left Trackball is: {leftTrackball.LastY}");
+				float leftTrackballX = leftTrackball.LastX;
+				float leftTrackballY = leftTrackball.LastY;
+				float leftTrackballAngleSqrLength = leftTrackballX * leftTrackballX + leftTrackballY * leftTrackballY;
+				float leftTrackballAngle = Mathf.Atan2 (leftTrackballY, leftTrackballX) * Mathf.Rad2Deg;
+				if (leftTrackballAngle < 0)
+					leftTrackballAngle += 360;
+				//Debug.Log($"Left Trackball Angle is: {leftTrackballAngle}");
+				if (lastSelectionTime <= 0.0f && leftTrackballAngleSqrLength > moveThreshold) 
+				{
+					SelectionChangeL(leftTrackballAngle);
+				}
 			}
 			else if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == 65597)
 			{
 				var rightTrackball = val.Data.Mouse;
-				Debug.Log($"MouseX of Right Trackball is: {rightTrackball.LastX}");
-				Debug.Log($"MouseY of Right Trackball is: {rightTrackball.LastY}");
+				float rightTrackballX = rightTrackball.LastX;
+				float rightTrackballY = rightTrackball.LastY;
+				float rightTrackballAngleSqrLength = rightTrackballX * rightTrackballX + rightTrackballY * rightTrackballY;
+				float rightTrackballAngle = Mathf.Atan2 (rightTrackballY, rightTrackballX) * Mathf.Rad2Deg;
+				if (rightTrackballAngle < 0)
+					rightTrackballAngle += 360;
+				//Debug.Log($"Right Trackball Angle is: {rightTrackballAngle}");
+				if (lastSelectionTime <= 0.0f && rightTrackballAngleSqrLength > moveThreshold) 
+				{
+					SelectionChangeR(rightTrackballAngle);
+				}
 			}
-
-
-
-
-
 
 		}
 
