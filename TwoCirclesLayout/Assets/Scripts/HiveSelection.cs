@@ -114,13 +114,13 @@ public class HiveSelection : MonoBehaviour
 
 	private void ProcessKeyPress()
 	{
-		if (Input.anyKeyDown && inputField.text.Length == 0 && startTime == 0.0f)
+		if ( inputField.text.Length == 0 && startTime == 0.0f)
 		{
 			// Start the timer for text entry
 			startTime = Time.time;
 		}
 
-		if (selectedButton != null && Input.GetKeyDown(KeyCode.F1))
+		if ( Input.GetKeyDown(KeyCode.F1))
 		{
 			TextMeshProUGUI buttonText = buttons[(int)selectedButton].GetComponentInChildren<TextMeshProUGUI>();
 			string character = buttonText.text;
