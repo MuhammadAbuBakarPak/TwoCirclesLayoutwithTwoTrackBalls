@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.tabscribeprototype.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "E:\\TestingProjects2023\\TwoCirclesLayout\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "F:\\PhD\\PhDProjectTapScribe\\TwoTrackBallTwoLayout\\TwoCirclesLayoutwithTwoTrackBalls\\TwoCirclesLayout\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "TabScribePrototype [Testing]"

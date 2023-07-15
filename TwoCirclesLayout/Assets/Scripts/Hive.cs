@@ -1,12 +1,17 @@
+using System;
+using System.Collections.Concurrent;
+using MultiInput.Internal.Platforms.Windows;
+using MultiInput.Internal.Platforms.Windows.PInvokeNet;
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 
 public class Hive : MonoBehaviour
 {
-	public enum Keyname
+    private MyWMListener listener;
+
+    public enum Keyname
 	{
 		KeyA, KeyB, KeyC, KeyD, KeyE, KeyF, KeyG, KeyH, KeyI, KeyJ, KeyK, KeyL, KeyM, KeyN, KeyO, KeyP, KeyQ, KeyR, KeyS
 	}
@@ -18,8 +23,9 @@ public class Hive : MonoBehaviour
 
 	private Dictionary<Keyname, ArrayList> neighMapL = new Dictionary<Keyname, ArrayList>();
 	private Dictionary<Keyname, ArrayList> neighMapR= new Dictionary<Keyname, ArrayList>();
+    private ConcurrentDictionary<IntPtr, RawInputDeviceType> connectedDevices;
 
-	private const float moveThreshold = 1.0e-10f;
+    private const float moveThreshold = 1.0e-10f;
 	private const float defaultSelectionTime = 0.3f;
 	private float lastSelectionTime = defaultSelectionTime;
 
@@ -39,9 +45,64 @@ public class Hive : MonoBehaviour
 		"hank feeding an eagle"
 	};
 
+    private void Awake()
+    {
+        connectedDevices = new ConcurrentDictionary<IntPtr, RawInputDeviceType>();
+        listener = new MyWMListener(OnInput, OnDeviceAdded, OnDeviceRemoved);
+    }
+
+    private void OnDestroy()
+    {
+        if (listener != null)
+        {
+            listener.Dispose();
+            listener = null;
+        }
+    }
+
+    private bool OnInput(RawInput input)
+    {
+        if (connectedDevices.ContainsKey(input.Header.Device))
+        {
+            if (input.Header.Type == RawInputType.Mouse && input.Header.Device.ToInt32() == 65599)
+            {
+                var leftTrackball = input.Data.Mouse;
+                Debug.Log($"MouseX of Left Trackball is: {leftTrackball.LastX}");
+                Debug.Log($"MouseY of Left Trackball is: {leftTrackball.LastY}");
+            }
+            else if (input.Header.Type == RawInputType.Mouse && input.Header.Device.ToInt32() == 65597)
+            {
+                var rightTrackball = input.Data.Mouse;
+                Debug.Log($"MouseX of Right Trackball is: {rightTrackball.LastX}");
+                Debug.Log($"MouseY of Right Trackball is: {rightTrackball.LastY}");
+            }
+        }
+
+        return true;
+    }
+
+    private void OnDeviceAdded(RawInputDevicesListItem device)
+    {
+        connectedDevices.TryAdd(device.hDevice, device.Type);
+    }
+
+    private void OnDeviceRemoved(RawInputDevicesListItem device)
+    {
+        connectedDevices.TryRemove(device.hDevice, out _);
+    }
 
 
-	private void Start()
+
+
+
+
+
+
+
+
+
+
+    private void Start()
 	{
 		selectedButtonL = Keyname.KeyA; 
 		selectedButtonR = Keyname.KeyA; 
@@ -136,14 +197,14 @@ public class Hive : MonoBehaviour
 			startTime = Time.time;
 		}
 
-		if (selectedButtonL != null && Input.GetKeyDown(KeyCode.F1))
+		if (Input.GetKeyDown(KeyCode.F1))
 		{
 			TextMeshProUGUI buttonText = buttonsL[(int)selectedButtonL].GetComponentInChildren<TextMeshProUGUI>();
 			string character = buttonText.text;
 			inputField.text += character.ToString();
 		}
 
-		if (selectedButtonR != null && Input.GetKeyDown(KeyCode.F5))
+		if (Input.GetKeyDown(KeyCode.F5))
 		{
 			TextMeshProUGUI buttonText = buttonsR[(int)selectedButtonR].GetComponentInChildren<TextMeshProUGUI>();
 			string character = buttonText.text;
