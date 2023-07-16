@@ -11,36 +11,40 @@ public class Hive : MonoBehaviour
 {
 	private MyWMListener listener;
 
-	public enum KeynameL
+	public enum Keyname
 	{
 		KeyA, KeyB, KeyC, KeyD, KeyE, KeyF, KeyG, KeyH, KeyI, KeyJ, KeyK, KeyL, KeyM, KeyN, KeyO, KeyP, KeyQ, KeyR, KeyS
 	}
 
-	public enum KeynameR
+/*	public enum KeynameR
 	{
 		KeyA, KeyB, KeyC, KeyD, KeyE, KeyF, KeyG, KeyH, KeyI, KeyJ, KeyK, KeyL, KeyM, KeyN, KeyO, KeyP, KeyQ, KeyR, KeyS
 	}
-
+*/
 	public TMP_InputField inputField;
 	public TextMeshProUGUI textField;
-	public GameObject[] buttonsL;
-	public GameObject[] buttonsR;
+	public GameObject[] buttons;
+//	public GameObject[] buttonsR;
 
-	private Dictionary<KeynameL, ArrayList> neighMapL = new Dictionary<KeynameL, ArrayList>();
-	private Dictionary<KeynameR, ArrayList> neighMapR= new Dictionary<KeynameR, ArrayList>();
+	private Dictionary<KeynameL, ArrayList> neighMap = new Dictionary<KeynameL, ArrayList>();
+//	private Dictionary<KeynameR, ArrayList> neighMapR= new Dictionary<KeynameR, ArrayList>();
 
 	private readonly ConcurrentQueue<RawInput> inputQueue = new ConcurrentQueue<RawInput>();
 
 	private const int leftTrackballDeviceID = 65599;
 	private const int rightTrackballDeviceID = 65597;
+ 
 	private const float moveThreshold = 1.0e-10f;
 	private const float defaultSelectionTime = 0.3f;
-	private float lastSelectionTime = defaultSelectionTime;
+
+ 	private float lastSelectionTimeL = defaultSelectionTime;
+	private float lastSelectionTimeR = defaultSelectionTime;
 
 	private Color selectedColor = new Color(0.055f, 0.561f, 0.243f);
 	private Color originalColor;
-	private KeynameL selectedButtonL;
-	private KeynameR selectedButtonR;
+ 
+	private Keyname selectedButtonL;
+	private Keyname selectedButtonR;
 
 	private float startTime = 0.0f;
 
@@ -57,15 +61,18 @@ public class Hive : MonoBehaviour
 	{
 		listener = new MyWMListener(OnInput, OnDeviceAdded, OnDeviceRemoved);
 	}
+ 
 	private bool OnInput(RawInput input)
 	{
 		inputQueue.Enqueue(input);
 		return true;
 	}
+ 
 	private void OnDeviceAdded(RawInputDevicesListItem device)
 	{
 	}
-	private void OnDeviceRemoved(RawInputDevicesListItem device)
+	
+ 	private void OnDeviceRemoved(RawInputDevicesListItem device)
 	{
 	}
 		
@@ -98,6 +105,7 @@ public class Hive : MonoBehaviour
 		neighMapL.Add(KeynameL.KeyQ, new ArrayList(){KeynameL.KeyP,KeynameL.KeyF,KeynameL.KeyR,KeynameL.KeyO,KeynameL.KeyK,KeynameL.KeyS});
 		neighMapL.Add(KeynameL.KeyR, new ArrayList(){KeynameL.KeyF,KeynameL.KeyG,KeynameL.KeyS,KeynameL.KeyN,KeynameL.KeyJ,KeynameL.KeyQ});
 		neighMapL.Add(KeynameL.KeyS, new ArrayList(){KeynameL.KeyG,KeynameL.KeyH,KeynameL.KeyQ,KeynameL.KeyM,KeynameL.KeyI,KeynameL.KeyR});
+  
 		// Construct Right neighborhood arrays
 		neighMapR.Add(KeynameR.KeyA, new ArrayList(){KeynameR.KeyD,KeynameR.KeyC,KeynameR.KeyB,KeynameR.KeyG,KeynameR.KeyF,KeynameR.KeyE});
 		neighMapR.Add(KeynameR.KeyB, new ArrayList(){KeynameR.KeyC,KeynameR.KeyJ,KeynameR.KeyI,KeynameR.KeyH,KeynameR.KeyG,KeynameR.KeyA});
@@ -124,38 +132,45 @@ public class Hive : MonoBehaviour
 	public void Update()
 	{
 		// Update the selection cooldown
-		lastSelectionTime -= Time.deltaTime;
+		lastSelectionTimeL -= Time.deltaTime;
+		lastSelectionTimeR -= Time.deltaTime;
 
 		if (inputQueue.TryDequeue(out var val))
 		{
 			if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == leftTrackballDeviceID)
 			{
-				var leftTrackball = val.Data.Mouse;
-				float leftTrackballX = leftTrackball.LastX;
-				float leftTrackballY = -leftTrackball.LastY;
-				float leftTrackballSqrLength = leftTrackballX * leftTrackballX + leftTrackballY * leftTrackballY;
-				float leftTrackballAngle = Mathf.Atan2 (leftTrackballY, leftTrackballX) * Mathf.Rad2Deg;
-				if (leftTrackballAngle < 0)
-					leftTrackballAngle += 360;
+				var trackball = val.Data.Mouse;
+				float trackballX = trackball.LastX;
+				float trackballY = -trackball.LastY;
+				float trackballSqrLength = trackballX * trackballX + trackballY * trackballY;
+    
+				float trackballAngle = Mathf.Atan2(trackballY, trackballX) * Mathf.Rad2Deg;
+				if (trackballAngle < 0)
+					trackballAngle += 360;
+     
 				//Debug.Log($"Left Trackball Angle is: {leftTrackballAngle}");
-				if (lastSelectionTime <= 0.0f && leftTrackballSqrLength > moveThreshold) 
+				if (lastSelectionTimeL <= 0.0f && trackballSqrLength > moveThreshold) 
 				{
-					SelectionChangeL(leftTrackballAngle);
+					SelectionChange(ref selectedButtonL, trackballAngle);
+					lastSelectionTimeL = defaultSelectionTime; 
 				}
 			}
 			else if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == rightTrackballDeviceID)
 			{
-				var rightTrackball = val.Data.Mouse;
-				float rightTrackballX = rightTrackball.LastX;
-				float rightTrackballY = -rightTrackball.LastY;
-				float rightTrackballSqrLength = rightTrackballX * rightTrackballX + rightTrackballY * rightTrackballY;
-				float rightTrackballAngle = Mathf.Atan2 (rightTrackballY, rightTrackballX) * Mathf.Rad2Deg;
-				if (rightTrackballAngle < 0)
-					rightTrackballAngle += 360;
+				var trackball = val.Data.Mouse;
+				float trackballX = trackball.LastX;
+				float trackballY = -trackball.LastY;
+				float trackballSqrLength = trackballX * trackballX + trackballY * trackballY;
+    
+				float trackballAngle = Mathf.Atan2(trackballY, trackballX) * Mathf.Rad2Deg;
+				if (trackballAngle < 0)
+					trackballAngle += 360;
+
 				//Debug.Log($"Right Trackball Angle is: {rightTrackballAngle}");
-				if (lastSelectionTime <= 0.0f && rightTrackballSqrLength > moveThreshold) 
+				if (lastSelectionTimeR <= 0.0f && trackballSqrLength > moveThreshold) 
 				{
-					SelectionChangeR(rightTrackballAngle);
+					SelectionChange(ref selectedButtonR, trackballAngle);
+					lastSelectionTimeR = defaultSelectionTime; 
 				}
 			}
 		}
@@ -256,48 +271,48 @@ public class Hive : MonoBehaviour
 		}
 	}
 
-	// Change selection Left
-	private void SelectionChangeL(float angle)
+	// Change selection
+	private void SelectionChange(ref Keyname button, float angle)
 	{
-		ArrayList neighArray = neighMapL[selectedButtonL];
+		ArrayList neighArray = neighMap[button];
 
 		if(neighArray != null)
 		{
-			SetButtonColor(buttonsL[(int)selectedButtonL], originalColor); 
+			SetButtonColor(buttons[(int)button], originalColor); 
 
 			if (angle > 30.0f && angle <= 90.0f) 
 			{
-				selectedButtonL = (KeynameL)neighArray[0];
+				button = (Keyname) neighArray[0];
 			}
 			else if (angle > 90.0f &&  angle <= 150.0f)
 			{
-				selectedButtonL = (KeynameL)neighArray[1];
+				button = (Keyname) neighArray[1];
 			}
 			else if (angle > 150.0f &&  angle <= 210.0f)
 			{
-				selectedButtonL = (KeynameL)neighArray[2];
+				button = (Keyname) neighArray[2];
 			}
 			else if (angle > 210.0f &&  angle <= 270.0f)
 			{
-				selectedButtonL = (KeynameL)neighArray[3];
+				button = (Keyname) neighArray[3];
 			}
 			else if (angle > 270.0f &&  angle <= 330.0f)
 			{
-				selectedButtonL = (KeynameL)neighArray[4];
+				button = (Keyname) neighArray[4];
 			}
 			else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 			{
-				selectedButtonL = (KeynameL)neighArray[5];
+				button = (Keyname) neighArray[5];
 			}
 
-			lastSelectionTime = defaultSelectionTime; 
-			SetButtonColor(buttonsL[(int)selectedButtonL], selectedColor);
+//			lastSelectionTime = defaultSelectionTime; 
+			SetButtonColor(buttons[(int)button], selectedColor);
 		}
 	}	
 
 
 	// Change selection Right
-	private void SelectionChangeR(float angle)
+/*	private void SelectionChangeR(float angle)
 	{
 		ArrayList neighArray = neighMapR[selectedButtonR];
 
@@ -334,7 +349,7 @@ public class Hive : MonoBehaviour
 			SetButtonColor(buttonsR[(int)selectedButtonR], selectedColor);
 		}
 	}
-
+*/
 
 	private void OnDestroy()
 	{
