@@ -26,6 +26,8 @@ public class Hive : MonoBehaviour
 
 	private readonly ConcurrentQueue<RawInput> inputQueue = new ConcurrentQueue<RawInput>();
 
+	private const int LeftTrackballDeviceID = 65599;
+	private const int RightTrackballDeviceID = 65597;
 	private const float moveThreshold = 1.0e-10f;
 	private const float defaultSelectionTime = 0.3f;
 	private float lastSelectionTime = defaultSelectionTime;
@@ -133,7 +135,7 @@ public class Hive : MonoBehaviour
 
 		if (inputQueue.TryDequeue(out var val))
 		{
-			if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == 65599)
+			if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == LeftTrackballDeviceID)
 			{
 				var leftTrackball = val.Data.Mouse;
 				float leftTrackballX = leftTrackball.LastX;
@@ -148,7 +150,7 @@ public class Hive : MonoBehaviour
 					SelectionChangeL(leftTrackballAngle);
 				}
 			}
-			else if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == 65597)
+			else if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == RightTrackballDeviceID)
 			{
 				var rightTrackball = val.Data.Mouse;
 				float rightTrackballX = rightTrackball.LastX;
