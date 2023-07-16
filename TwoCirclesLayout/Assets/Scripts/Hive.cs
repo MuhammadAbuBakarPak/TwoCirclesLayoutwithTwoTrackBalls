@@ -11,7 +11,12 @@ public class Hive : MonoBehaviour
 {
 	private MyWMListener listener;
 
-	public enum Keyname
+	public enum KeynameL
+	{
+		KeyA, KeyB, KeyC, KeyD, KeyE, KeyF, KeyG, KeyH, KeyI, KeyJ, KeyK, KeyL, KeyM, KeyN, KeyO, KeyP, KeyQ, KeyR, KeyS
+	}
+
+	public enum KeynameR
 	{
 		KeyA, KeyB, KeyC, KeyD, KeyE, KeyF, KeyG, KeyH, KeyI, KeyJ, KeyK, KeyL, KeyM, KeyN, KeyO, KeyP, KeyQ, KeyR, KeyS
 	}
@@ -21,8 +26,8 @@ public class Hive : MonoBehaviour
 	public GameObject[] buttonsL;
 	public GameObject[] buttonsR;
 
-	private Dictionary<Keyname, ArrayList> neighMapL = new Dictionary<Keyname, ArrayList>();
-	private Dictionary<Keyname, ArrayList> neighMapR= new Dictionary<Keyname, ArrayList>();
+	private Dictionary<KeynameL, ArrayList> neighMapL = new Dictionary<KeynameL, ArrayList>();
+	private Dictionary<KeynameR, ArrayList> neighMapR= new Dictionary<KeynameR, ArrayList>();
 
 	private readonly ConcurrentQueue<RawInput> inputQueue = new ConcurrentQueue<RawInput>();
 
@@ -34,8 +39,8 @@ public class Hive : MonoBehaviour
 
 	private Color selectedColor = new Color(0.055f, 0.561f, 0.243f);
 	private Color originalColor;
-	private Keyname selectedButtonL;
-	private Keyname selectedButtonR;
+	private KeynameL selectedButtonL;
+	private KeynameR selectedButtonR;
 
 	private float startTime = 0.0f;
 
@@ -66,53 +71,53 @@ public class Hive : MonoBehaviour
 		
 	private void Start()
 	{
-		selectedButtonL = Keyname.KeyA; 
-		selectedButtonR = Keyname.KeyA; 
-		SetButtonColor(buttonsL[(int)Keyname.KeyA], selectedColor);
-		SetButtonColor(buttonsR[(int)Keyname.KeyA], selectedColor);
+		selectedButtonL = KeynameL.KeyA; 
+		selectedButtonR = KeynameR.KeyA; 
+		SetButtonColor(buttonsL[(int)KeynameL.KeyA], selectedColor);
+		SetButtonColor(buttonsR[(int)KeynameR.KeyA], selectedColor);
 		textField.text = sentences[currentSentenceIndex];
 		//inputField.ActivateInputField();
 
 		// Construct Left neighborhood arrays
-		neighMapL.Add(Keyname.KeyA, new ArrayList(){Keyname.KeyD,Keyname.KeyC,Keyname.KeyB,Keyname.KeyG,Keyname.KeyF,Keyname.KeyE});
-		neighMapL.Add(Keyname.KeyB, new ArrayList(){Keyname.KeyC,Keyname.KeyJ,Keyname.KeyI,Keyname.KeyH,Keyname.KeyG,Keyname.KeyA});
-		neighMapL.Add(Keyname.KeyC, new ArrayList(){Keyname.KeyL,Keyname.KeyK,Keyname.KeyJ,Keyname.KeyB,Keyname.KeyA,Keyname.KeyD});
-		neighMapL.Add(Keyname.KeyD, new ArrayList(){Keyname.KeyM,Keyname.KeyL,Keyname.KeyC,Keyname.KeyA,Keyname.KeyE,Keyname.KeyN});
-		neighMapL.Add(Keyname.KeyE, new ArrayList(){Keyname.KeyN,Keyname.KeyD,Keyname.KeyA,Keyname.KeyF,Keyname.KeyP,Keyname.KeyO});
-		neighMapL.Add(Keyname.KeyF, new ArrayList(){Keyname.KeyE,Keyname.KeyA,Keyname.KeyG,Keyname.KeyR,Keyname.KeyQ,Keyname.KeyP});
-		neighMapL.Add(Keyname.KeyG, new ArrayList(){Keyname.KeyA,Keyname.KeyB,Keyname.KeyH,Keyname.KeyS,Keyname.KeyR,Keyname.KeyF});
-		neighMapL.Add(Keyname.KeyH, new ArrayList(){Keyname.KeyB,Keyname.KeyI,Keyname.KeyP,Keyname.KeyL,Keyname.KeyS,Keyname.KeyG});
-		neighMapL.Add(Keyname.KeyI, new ArrayList(){Keyname.KeyJ,Keyname.KeyS,Keyname.KeyO,Keyname.KeyK,Keyname.KeyH,Keyname.KeyB});
-		neighMapL.Add(Keyname.KeyJ, new ArrayList(){Keyname.KeyK,Keyname.KeyR,Keyname.KeyN,Keyname.KeyI,Keyname.KeyB,Keyname.KeyC});
-		neighMapL.Add(Keyname.KeyK, new ArrayList(){Keyname.KeyI,Keyname.KeyQ,Keyname.KeyM,Keyname.KeyJ,Keyname.KeyC,Keyname.KeyL});
-		neighMapL.Add(Keyname.KeyL, new ArrayList(){Keyname.KeyH,Keyname.KeyP,Keyname.KeyK,Keyname.KeyC,Keyname.KeyD,Keyname.KeyM});
-		neighMapL.Add(Keyname.KeyM, new ArrayList(){Keyname.KeyS,Keyname.KeyO,Keyname.KeyL,Keyname.KeyD,Keyname.KeyN,Keyname.KeyK});
-		neighMapL.Add(Keyname.KeyN, new ArrayList(){Keyname.KeyR,Keyname.KeyM,Keyname.KeyD,Keyname.KeyE,Keyname.KeyO,Keyname.KeyJ});
-		neighMapL.Add(Keyname.KeyO, new ArrayList(){Keyname.KeyQ,Keyname.KeyN,Keyname.KeyE,Keyname.KeyP,Keyname.KeyM,Keyname.KeyI});
-		neighMapL.Add(Keyname.KeyP, new ArrayList(){Keyname.KeyO,Keyname.KeyE,Keyname.KeyF,Keyname.KeyQ,Keyname.KeyL,Keyname.KeyH});
-		neighMapL.Add(Keyname.KeyQ, new ArrayList(){Keyname.KeyP,Keyname.KeyF,Keyname.KeyR,Keyname.KeyO,Keyname.KeyK,Keyname.KeyS});
-		neighMapL.Add(Keyname.KeyR, new ArrayList(){Keyname.KeyF,Keyname.KeyG,Keyname.KeyS,Keyname.KeyN,Keyname.KeyJ,Keyname.KeyQ});
-		neighMapL.Add(Keyname.KeyS, new ArrayList(){Keyname.KeyG,Keyname.KeyH,Keyname.KeyQ,Keyname.KeyM,Keyname.KeyI,Keyname.KeyR});
+		neighMapL.Add(KeynameL.KeyA, new ArrayList(){KeynameL.KeyD,KeynameL.KeyC,KeynameL.KeyB,KeynameL.KeyG,KeynameL.KeyF,KeynameL.KeyE});
+		neighMapL.Add(KeynameL.KeyB, new ArrayList(){KeynameL.KeyC,KeynameL.KeyJ,KeynameL.KeyI,KeynameL.KeyH,KeynameL.KeyG,KeynameL.KeyA});
+		neighMapL.Add(KeynameL.KeyC, new ArrayList(){KeynameL.KeyL,KeynameL.KeyK,KeynameL.KeyJ,KeynameL.KeyB,KeynameL.KeyA,KeynameL.KeyD});
+		neighMapL.Add(KeynameL.KeyD, new ArrayList(){KeynameL.KeyM,KeynameL.KeyL,KeynameL.KeyC,KeynameL.KeyA,KeynameL.KeyE,KeynameL.KeyN});
+		neighMapL.Add(KeynameL.KeyE, new ArrayList(){KeynameL.KeyN,KeynameL.KeyD,KeynameL.KeyA,KeynameL.KeyF,KeynameL.KeyP,KeynameL.KeyO});
+		neighMapL.Add(KeynameL.KeyF, new ArrayList(){KeynameL.KeyE,KeynameL.KeyA,KeynameL.KeyG,KeynameL.KeyR,KeynameL.KeyQ,KeynameL.KeyP});
+		neighMapL.Add(KeynameL.KeyG, new ArrayList(){KeynameL.KeyA,KeynameL.KeyB,KeynameL.KeyH,KeynameL.KeyS,KeynameL.KeyR,KeynameL.KeyF});
+		neighMapL.Add(KeynameL.KeyH, new ArrayList(){KeynameL.KeyB,KeynameL.KeyI,KeynameL.KeyP,KeynameL.KeyL,KeynameL.KeyS,KeynameL.KeyG});
+		neighMapL.Add(KeynameL.KeyI, new ArrayList(){KeynameL.KeyJ,KeynameL.KeyS,KeynameL.KeyO,KeynameL.KeyK,KeynameL.KeyH,KeynameL.KeyB});
+		neighMapL.Add(KeynameL.KeyJ, new ArrayList(){KeynameL.KeyK,KeynameL.KeyR,KeynameL.KeyN,KeynameL.KeyI,KeynameL.KeyB,KeynameL.KeyC});
+		neighMapL.Add(KeynameL.KeyK, new ArrayList(){KeynameL.KeyI,KeynameL.KeyQ,KeynameL.KeyM,KeynameL.KeyJ,KeynameL.KeyC,KeynameL.KeyL});
+		neighMapL.Add(KeynameL.KeyL, new ArrayList(){KeynameL.KeyH,KeynameL.KeyP,KeynameL.KeyK,KeynameL.KeyC,KeynameL.KeyD,KeynameL.KeyM});
+		neighMapL.Add(KeynameL.KeyM, new ArrayList(){KeynameL.KeyS,KeynameL.KeyO,KeynameL.KeyL,KeynameL.KeyD,KeynameL.KeyN,KeynameL.KeyK});
+		neighMapL.Add(KeynameL.KeyN, new ArrayList(){KeynameL.KeyR,KeynameL.KeyM,KeynameL.KeyD,KeynameL.KeyE,KeynameL.KeyO,KeynameL.KeyJ});
+		neighMapL.Add(KeynameL.KeyO, new ArrayList(){KeynameL.KeyQ,KeynameL.KeyN,KeynameL.KeyE,KeynameL.KeyP,KeynameL.KeyM,KeynameL.KeyI});
+		neighMapL.Add(KeynameL.KeyP, new ArrayList(){KeynameL.KeyO,KeynameL.KeyE,KeynameL.KeyF,KeynameL.KeyQ,KeynameL.KeyL,KeynameL.KeyH});
+		neighMapL.Add(KeynameL.KeyQ, new ArrayList(){KeynameL.KeyP,KeynameL.KeyF,KeynameL.KeyR,KeynameL.KeyO,KeynameL.KeyK,KeynameL.KeyS});
+		neighMapL.Add(KeynameL.KeyR, new ArrayList(){KeynameL.KeyF,KeynameL.KeyG,KeynameL.KeyS,KeynameL.KeyN,KeynameL.KeyJ,KeynameL.KeyQ});
+		neighMapL.Add(KeynameL.KeyS, new ArrayList(){KeynameL.KeyG,KeynameL.KeyH,KeynameL.KeyQ,KeynameL.KeyM,KeynameL.KeyI,KeynameL.KeyR});
 		// Construct Right neighborhood arrays
-		neighMapR.Add(Keyname.KeyA, new ArrayList(){Keyname.KeyD,Keyname.KeyC,Keyname.KeyB,Keyname.KeyG,Keyname.KeyF,Keyname.KeyE});
-		neighMapR.Add(Keyname.KeyB, new ArrayList(){Keyname.KeyC,Keyname.KeyJ,Keyname.KeyI,Keyname.KeyH,Keyname.KeyG,Keyname.KeyA});
-		neighMapR.Add(Keyname.KeyC, new ArrayList(){Keyname.KeyL,Keyname.KeyK,Keyname.KeyJ,Keyname.KeyB,Keyname.KeyA,Keyname.KeyD});
-		neighMapR.Add(Keyname.KeyD, new ArrayList(){Keyname.KeyM,Keyname.KeyL,Keyname.KeyC,Keyname.KeyA,Keyname.KeyE,Keyname.KeyN});
-		neighMapR.Add(Keyname.KeyE, new ArrayList(){Keyname.KeyN,Keyname.KeyD,Keyname.KeyA,Keyname.KeyF,Keyname.KeyP,Keyname.KeyO});
-		neighMapR.Add(Keyname.KeyF, new ArrayList(){Keyname.KeyE,Keyname.KeyA,Keyname.KeyG,Keyname.KeyR,Keyname.KeyQ,Keyname.KeyP});
-		neighMapR.Add(Keyname.KeyG, new ArrayList(){Keyname.KeyA,Keyname.KeyB,Keyname.KeyH,Keyname.KeyS,Keyname.KeyR,Keyname.KeyF});
-		neighMapR.Add(Keyname.KeyH, new ArrayList(){Keyname.KeyB,Keyname.KeyI,Keyname.KeyP,Keyname.KeyL,Keyname.KeyS,Keyname.KeyG});
-		neighMapR.Add(Keyname.KeyI, new ArrayList(){Keyname.KeyJ,Keyname.KeyS,Keyname.KeyO,Keyname.KeyK,Keyname.KeyH,Keyname.KeyB});
-		neighMapR.Add(Keyname.KeyJ, new ArrayList(){Keyname.KeyK,Keyname.KeyR,Keyname.KeyN,Keyname.KeyI,Keyname.KeyB,Keyname.KeyC});
-		neighMapR.Add(Keyname.KeyK, new ArrayList(){Keyname.KeyI,Keyname.KeyQ,Keyname.KeyM,Keyname.KeyJ,Keyname.KeyC,Keyname.KeyL});
-		neighMapR.Add(Keyname.KeyL, new ArrayList(){Keyname.KeyH,Keyname.KeyP,Keyname.KeyK,Keyname.KeyC,Keyname.KeyD,Keyname.KeyM});
-		neighMapR.Add(Keyname.KeyM, new ArrayList(){Keyname.KeyS,Keyname.KeyO,Keyname.KeyL,Keyname.KeyD,Keyname.KeyN,Keyname.KeyK});
-		neighMapR.Add(Keyname.KeyN, new ArrayList(){Keyname.KeyR,Keyname.KeyM,Keyname.KeyD,Keyname.KeyE,Keyname.KeyO,Keyname.KeyJ});
-		neighMapR.Add(Keyname.KeyO, new ArrayList(){Keyname.KeyQ,Keyname.KeyN,Keyname.KeyE,Keyname.KeyP,Keyname.KeyM,Keyname.KeyI});
-		neighMapR.Add(Keyname.KeyP, new ArrayList(){Keyname.KeyO,Keyname.KeyE,Keyname.KeyF,Keyname.KeyQ,Keyname.KeyL,Keyname.KeyH});
-		neighMapR.Add(Keyname.KeyQ, new ArrayList(){Keyname.KeyP,Keyname.KeyF,Keyname.KeyR,Keyname.KeyO,Keyname.KeyK,Keyname.KeyS});
-		neighMapR.Add(Keyname.KeyR, new ArrayList(){Keyname.KeyF,Keyname.KeyG,Keyname.KeyS,Keyname.KeyN,Keyname.KeyJ,Keyname.KeyQ});
-		neighMapR.Add(Keyname.KeyS, new ArrayList(){Keyname.KeyG,Keyname.KeyH,Keyname.KeyQ,Keyname.KeyM,Keyname.KeyI,Keyname.KeyR});
+		neighMapR.Add(KeynameR.KeyA, new ArrayList(){KeynameR.KeyD,KeynameR.KeyC,KeynameR.KeyB,KeynameR.KeyG,KeynameR.KeyF,KeynameR.KeyE});
+		neighMapR.Add(KeynameR.KeyB, new ArrayList(){KeynameR.KeyC,KeynameR.KeyJ,KeynameR.KeyI,KeynameR.KeyH,KeynameR.KeyG,KeynameR.KeyA});
+		neighMapR.Add(KeynameR.KeyC, new ArrayList(){KeynameR.KeyL,KeynameR.KeyK,KeynameR.KeyJ,KeynameR.KeyB,KeynameR.KeyA,KeynameR.KeyD});
+		neighMapR.Add(KeynameR.KeyD, new ArrayList(){KeynameR.KeyM,KeynameR.KeyL,KeynameR.KeyC,KeynameR.KeyA,KeynameR.KeyE,KeynameR.KeyN});
+		neighMapR.Add(KeynameR.KeyE, new ArrayList(){KeynameR.KeyN,KeynameR.KeyD,KeynameR.KeyA,KeynameR.KeyF,KeynameR.KeyP,KeynameR.KeyO});
+		neighMapR.Add(KeynameR.KeyF, new ArrayList(){KeynameR.KeyE,KeynameR.KeyA,KeynameR.KeyG,KeynameR.KeyR,KeynameR.KeyQ,KeynameR.KeyP});
+		neighMapR.Add(KeynameR.KeyG, new ArrayList(){KeynameR.KeyA,KeynameR.KeyB,KeynameR.KeyH,KeynameR.KeyS,KeynameR.KeyR,KeynameR.KeyF});
+		neighMapR.Add(KeynameR.KeyH, new ArrayList(){KeynameR.KeyB,KeynameR.KeyI,KeynameR.KeyP,KeynameR.KeyL,KeynameR.KeyS,KeynameR.KeyG});
+		neighMapR.Add(KeynameR.KeyI, new ArrayList(){KeynameR.KeyJ,KeynameR.KeyS,KeynameR.KeyO,KeynameR.KeyK,KeynameR.KeyH,KeynameR.KeyB});
+		neighMapR.Add(KeynameR.KeyJ, new ArrayList(){KeynameR.KeyK,KeynameR.KeyR,KeynameR.KeyN,KeynameR.KeyI,KeynameR.KeyB,KeynameR.KeyC});
+		neighMapR.Add(KeynameR.KeyK, new ArrayList(){KeynameR.KeyI,KeynameR.KeyQ,KeynameR.KeyM,KeynameR.KeyJ,KeynameR.KeyC,KeynameR.KeyL});
+		neighMapR.Add(KeynameR.KeyL, new ArrayList(){KeynameR.KeyH,KeynameR.KeyP,KeynameR.KeyK,KeynameR.KeyC,KeynameR.KeyD,KeynameR.KeyM});
+		neighMapR.Add(KeynameR.KeyM, new ArrayList(){KeynameR.KeyS,KeynameR.KeyO,KeynameR.KeyL,KeynameR.KeyD,KeynameR.KeyN,KeynameR.KeyK});
+		neighMapR.Add(KeynameR.KeyN, new ArrayList(){KeynameR.KeyR,KeynameR.KeyM,KeynameR.KeyD,KeynameR.KeyE,KeynameR.KeyO,KeynameR.KeyJ});
+		neighMapR.Add(KeynameR.KeyO, new ArrayList(){KeynameR.KeyQ,KeynameR.KeyN,KeynameR.KeyE,KeynameR.KeyP,KeynameR.KeyM,KeynameR.KeyI});
+		neighMapR.Add(KeynameR.KeyP, new ArrayList(){KeynameR.KeyO,KeynameR.KeyE,KeynameR.KeyF,KeynameR.KeyQ,KeynameR.KeyL,KeynameR.KeyH});
+		neighMapR.Add(KeynameR.KeyQ, new ArrayList(){KeynameR.KeyP,KeynameR.KeyF,KeynameR.KeyR,KeynameR.KeyO,KeynameR.KeyK,KeynameR.KeyS});
+		neighMapR.Add(KeynameR.KeyR, new ArrayList(){KeynameR.KeyF,KeynameR.KeyG,KeynameR.KeyS,KeynameR.KeyN,KeynameR.KeyJ,KeynameR.KeyQ});
+		neighMapR.Add(KeynameR.KeyS, new ArrayList(){KeynameR.KeyG,KeynameR.KeyH,KeynameR.KeyQ,KeynameR.KeyM,KeynameR.KeyI,KeynameR.KeyR});
 	}
 
 
@@ -127,7 +132,7 @@ public class Hive : MonoBehaviour
 			{
 				var leftTrackball = val.Data.Mouse;
 				float leftTrackballX = leftTrackball.LastX;
-				float leftTrackballY = leftTrackball.LastY;
+				float leftTrackballY = -leftTrackball.LastY;
 				float leftTrackballSqrLength = leftTrackballX * leftTrackballX + leftTrackballY * leftTrackballY;
 				float leftTrackballAngle = Mathf.Atan2 (leftTrackballY, leftTrackballX) * Mathf.Rad2Deg;
 				if (leftTrackballAngle < 0)
@@ -142,7 +147,7 @@ public class Hive : MonoBehaviour
 			{
 				var rightTrackball = val.Data.Mouse;
 				float rightTrackballX = rightTrackball.LastX;
-				float rightTrackballY = rightTrackball.LastY;
+				float rightTrackballY = -rightTrackball.LastY;
 				float rightTrackballSqrLength = rightTrackballX * rightTrackballX + rightTrackballY * rightTrackballY;
 				float rightTrackballAngle = Mathf.Atan2 (rightTrackballY, rightTrackballX) * Mathf.Rad2Deg;
 				if (rightTrackballAngle < 0)
@@ -262,27 +267,27 @@ public class Hive : MonoBehaviour
 
 			if (angle > 30.0f && angle <= 90.0f) 
 			{
-				selectedButtonL = (Keyname)neighArray[0];
+				selectedButtonL = (KeynameL)neighArray[0];
 			}
 			else if (angle > 90.0f &&  angle <= 150.0f)
 			{
-				selectedButtonL = (Keyname)neighArray[1];
+				selectedButtonL = (KeynameL)neighArray[1];
 			}
 			else if (angle > 150.0f &&  angle <= 210.0f)
 			{
-				selectedButtonL = (Keyname)neighArray[2];
+				selectedButtonL = (KeynameL)neighArray[2];
 			}
 			else if (angle > 210.0f &&  angle <= 270.0f)
 			{
-				selectedButtonL = (Keyname)neighArray[3];
+				selectedButtonL = (KeynameL)neighArray[3];
 			}
 			else if (angle > 270.0f &&  angle <= 330.0f)
 			{
-				selectedButtonL = (Keyname)neighArray[4];
+				selectedButtonL = (KeynameL)neighArray[4];
 			}
 			else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 			{
-				selectedButtonL = (Keyname)neighArray[5];
+				selectedButtonL = (KeynameL)neighArray[5];
 			}
 
 			lastSelectionTime = defaultSelectionTime; 
@@ -302,27 +307,27 @@ public class Hive : MonoBehaviour
 
 			if (angle > 30.0f && angle <= 90.0f) 
 			{
-				selectedButtonR = (Keyname)neighArray[0];
+				selectedButtonR = (KeynameR)neighArray[0];
 			}
 			else if (angle > 90.0f &&  angle <= 150.0f)
 			{
-				selectedButtonR = (Keyname)neighArray[1];
+				selectedButtonR = (KeynameR)neighArray[1];
 			}
 			else if (angle > 150.0f &&  angle <= 210.0f)
 			{
-				selectedButtonR = (Keyname)neighArray[2];
+				selectedButtonR = (KeynameR)neighArray[2];
 			}
 			else if (angle > 210.0f &&  angle <= 270.0f)
 			{
-				selectedButtonR = (Keyname)neighArray[3];
+				selectedButtonR = (KeynameR)neighArray[3];
 			}
 			else if (angle > 270.0f &&  angle <= 330.0f)
 			{
-				selectedButtonR = (Keyname)neighArray[4];
+				selectedButtonR = (KeynameR)neighArray[4];
 			}
 			else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 			{
-				selectedButtonR = (Keyname)neighArray[5];
+				selectedButtonR = (KeynameR)neighArray[5];
 			}
 
 			lastSelectionTime = defaultSelectionTime; 
