@@ -52,7 +52,6 @@ public class Hive : MonoBehaviour
 	{
 		listener = new MyWMListener(OnInput, OnDeviceAdded, OnDeviceRemoved);
 	}
-
 	private bool OnInput(RawInput input)
 	{
 		inputQueue.Enqueue(input);
@@ -64,16 +63,7 @@ public class Hive : MonoBehaviour
 	private void OnDeviceRemoved(RawInputDevicesListItem device)
 	{
 	}
-
-	private void OnDestroy()
-	{
-		if (listener != null)
-		{
-			listener.Dispose();
-			listener = null;
-		}
-	}
-
+		
 	private void Start()
 	{
 		selectedButtonL = Keyname.KeyA; 
@@ -103,8 +93,6 @@ public class Hive : MonoBehaviour
 		neighMapL.Add(Keyname.KeyQ, new ArrayList(){Keyname.KeyP,Keyname.KeyF,Keyname.KeyR,Keyname.KeyO,Keyname.KeyK,Keyname.KeyS});
 		neighMapL.Add(Keyname.KeyR, new ArrayList(){Keyname.KeyF,Keyname.KeyG,Keyname.KeyS,Keyname.KeyN,Keyname.KeyJ,Keyname.KeyQ});
 		neighMapL.Add(Keyname.KeyS, new ArrayList(){Keyname.KeyG,Keyname.KeyH,Keyname.KeyQ,Keyname.KeyM,Keyname.KeyI,Keyname.KeyR});
-
-
 		// Construct Right neighborhood arrays
 		neighMapR.Add(Keyname.KeyA, new ArrayList(){Keyname.KeyD,Keyname.KeyC,Keyname.KeyB,Keyname.KeyG,Keyname.KeyF,Keyname.KeyE});
 		neighMapR.Add(Keyname.KeyB, new ArrayList(){Keyname.KeyC,Keyname.KeyJ,Keyname.KeyI,Keyname.KeyH,Keyname.KeyG,Keyname.KeyA});
@@ -140,12 +128,12 @@ public class Hive : MonoBehaviour
 				var leftTrackball = val.Data.Mouse;
 				float leftTrackballX = leftTrackball.LastX;
 				float leftTrackballY = leftTrackball.LastY;
-				float leftTrackballAngleSqrLength = leftTrackballX * leftTrackballX + leftTrackballY * leftTrackballY;
+				float leftTrackballSqrLength = leftTrackballX * leftTrackballX + leftTrackballY * leftTrackballY;
 				float leftTrackballAngle = Mathf.Atan2 (leftTrackballY, leftTrackballX) * Mathf.Rad2Deg;
 				if (leftTrackballAngle < 0)
 					leftTrackballAngle += 360;
 				//Debug.Log($"Left Trackball Angle is: {leftTrackballAngle}");
-				if (lastSelectionTime <= 0.0f && leftTrackballAngleSqrLength > moveThreshold) 
+				if (lastSelectionTime <= 0.0f && leftTrackballSqrLength > moveThreshold) 
 				{
 					SelectionChangeL(leftTrackballAngle);
 				}
@@ -155,20 +143,17 @@ public class Hive : MonoBehaviour
 				var rightTrackball = val.Data.Mouse;
 				float rightTrackballX = rightTrackball.LastX;
 				float rightTrackballY = rightTrackball.LastY;
-				float rightTrackballAngleSqrLength = rightTrackballX * rightTrackballX + rightTrackballY * rightTrackballY;
+				float rightTrackballSqrLength = rightTrackballX * rightTrackballX + rightTrackballY * rightTrackballY;
 				float rightTrackballAngle = Mathf.Atan2 (rightTrackballY, rightTrackballX) * Mathf.Rad2Deg;
 				if (rightTrackballAngle < 0)
 					rightTrackballAngle += 360;
 				//Debug.Log($"Right Trackball Angle is: {rightTrackballAngle}");
-				if (lastSelectionTime <= 0.0f && rightTrackballAngleSqrLength > moveThreshold) 
+				if (lastSelectionTime <= 0.0f && rightTrackballSqrLength > moveThreshold) 
 				{
 					SelectionChangeR(rightTrackballAngle);
 				}
 			}
-
 		}
-
-
 	}
 
 
@@ -179,14 +164,12 @@ public class Hive : MonoBehaviour
 	}
 
 
-
-
 	private void ProcessKeyPress()
 	{
-		if (Input.anyKeyDown && inputField.text.Length == 0 && startTime == 0.0f)
+		int T = inputField.text.Length;
+		if (Input.anyKeyDown && T == 0 && startTime == 0.0f)
 		{
-			// Start the timer for text entry
-			startTime = Time.time;
+			startTime = Time.time; 	// Start the timer for text entry
 		}
 
 		if (Input.GetKeyDown(KeyCode.F1))
@@ -206,9 +189,9 @@ public class Hive : MonoBehaviour
 		// Handle backspace key
 		if (Input.GetKeyDown(KeyCode.F2))
 		{
-			if (inputField != null && inputField.text.Length > 0)
+			if (inputField != null && T > 0)
 			{
-				inputField.text = inputField.text.Remove(inputField.text.Length - 1);
+				inputField.text = inputField.text.Remove(T - 1);
 			}
 		}
 
@@ -227,7 +210,7 @@ public class Hive : MonoBehaviour
 			//float endTime = Time.time;
 			// Calculate the text entry speed for the current sentence
 			float elapsedTime = Time.time - startTime;
-			float wordsPerMinute = (inputField.text.Length - 1) / elapsedTime * 60.0f * 0.2f;
+			float wordsPerMinute = (T - 1) / elapsedTime * 60.0f * 0.2f;
 			Debug.LogFormat("Text Entry Speed (Sentence {0}): {1} WPM", currentSentenceIndex, wordsPerMinute);
 
 			// Reset start time
@@ -236,32 +219,17 @@ public class Hive : MonoBehaviour
 
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
 	//Perform Enter Key Functionality
 	private void EnterKeyFunctionality()
 	{
 		if (textField != null)
 		{
-
 			currentSentenceIndex++;
 			// Update the text field with the next sentence
 			if (currentSentenceIndex  < sentences.Length)
 			{
 				textField.text = sentences[currentSentenceIndex];
-
-				// Clear the input field
-				inputField.text = string.Empty;
+				inputField.text = string.Empty; 	// Clear the input field
 			}
 			else
 			{
@@ -359,6 +327,16 @@ public class Hive : MonoBehaviour
 
 			lastSelectionTime = defaultSelectionTime; 
 			SetButtonColor(buttonsR[(int)selectedButtonR], selectedColor);
+		}
+	}
+
+
+	private void OnDestroy()
+	{
+		if (listener != null)
+		{
+			listener.Dispose();
+			listener = null;
 		}
 	}
 
