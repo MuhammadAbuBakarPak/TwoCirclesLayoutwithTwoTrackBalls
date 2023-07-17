@@ -132,7 +132,7 @@ public class Hive : MonoBehaviour
 			if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == leftTrackballDeviceID)
 			{
 				float trackballSqrLength, trackballAngle;
-   				GetTrackBallInfo(out trackballSqrLength, out trackballAngle, val.Data.Mouse)
+				GetTrackBallInfo(out trackballSqrLength, out trackballAngle, val.Data.Mouse);
 
 				//Debug.Log($"Left Trackball Angle is: {leftTrackballAngle}");
 				if (lastSelectionTimeL <= 0.0f && trackballSqrLength > moveThreshold) 
@@ -144,7 +144,7 @@ public class Hive : MonoBehaviour
 			else if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == rightTrackballDeviceID)
 			{
 				float trackballSqrLength, trackballAngle;
-   				GetTrackBallInfo(out trackballSqrLength, out trackballAngle, val.Data.Mouse)
+				GetTrackBallInfo(out trackballSqrLength, out trackballAngle, val.Data.Mouse);
 
 				//Debug.Log($"Right Trackball Angle is: {rightTrackballAngle}");
 				if (lastSelectionTimeR <= 0.0f && trackballSqrLength > moveThreshold) 
