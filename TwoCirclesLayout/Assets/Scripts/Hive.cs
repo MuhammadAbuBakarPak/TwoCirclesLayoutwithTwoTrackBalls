@@ -86,7 +86,7 @@ public class Hive : MonoBehaviour
 		textField.text = sentences[currentSentenceIndex];
 		//inputField.ActivateInputField();
 
-		// Construct Left neighborhood arrays
+		// Construct neighborhood arrays
 		neighMap.Add(Keyname.KeyA, new ArrayList(){Keyname.KeyW,Keyname.Key123,Keyname.KeyG,Keyname.KeyQ,Keyname.KeyZ,Keyname.KeyS});
 		neighMap.Add(Keyname.KeyB, new ArrayList(){Keyname.KeyJ,Keyname.KeyH,Keyname.KeyEnter,Keyname.KeySpace8,Keyname.KeySpace3,Keyname.KeyN});
 		neighMap.Add(Keyname.KeyC, new ArrayList(){Keyname.KeyF,Keyname.KeyD,Keyname.KeyX,Keyname.KeySpace1,Keyname.KeySpace2,Keyname.KeyV});
