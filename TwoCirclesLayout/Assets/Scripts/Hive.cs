@@ -13,8 +13,8 @@ public class Hive : MonoBehaviour
 
 	public enum Keyname
 	{
-		KeyA, KeyB, KeyC, KeyD, KeyE, KeyF, KeyG, KeyH, KeyI, KeyJ, KeyK, KeyL, KeyM, KeyN, KeyO, KeyP, KeyQ, KeyR, KeyS, KeyT, KeyU, KeyV, KeyW, KeyX, KeyY,KeyZ, KeySpace1,KeySpace2, KeySpace3, KeySpace4, KeySpace5,
-		KeySpace6, KeySpace7, KeySpace8, KeyNum, KeyBackSpace, KeyEnter, KeyShift
+		KeyA, KeyB, KeyC, KeyD, KeyE, KeyF, KeyG, KeyH, KeyI, KeyJ, KeyK, KeyL, KeyM, KeyN, KeyO, KeyP, KeyQ, KeyR, KeyS, KeyT, KeyU, KeyV, KeyW, KeyX, KeyY,KeyZ, KeySpace1,KeySpace2, KeySpace3, KeySpace4, KeySpace5,KeySpace6, KeySpace7, KeySpace8, KeyNum,
+		KeyBackSpace, KeyEnter, KeyShift
 	}
 
 	public TMP_InputField inputField;
@@ -28,8 +28,8 @@ public class Hive : MonoBehaviour
 	private const int leftTrackballDeviceID = 65599;
 	private const int rightTrackballDeviceID = 65597;
 
-	private const float moveThreshold = 1.0e-10f;
-	private const float defaultSelectionTime = 0.3f;
+	public const float moveThreshold = 1.0e-10f;
+	private const float defaultSelectionTime = 0.25f;
 
 	private float lastSelectionTimeL = defaultSelectionTime;
 	private float lastSelectionTimeR = defaultSelectionTime;
@@ -182,14 +182,14 @@ public class Hive : MonoBehaviour
 			startTime = Time.time; 	// Start the timer for text entry
 		}
 
-		if (Input.GetKeyDown(KeyCode.F1))
+		if (Input.GetKeyDown(KeyCode.F5))
 		{
 			TextMeshProUGUI buttonText = buttons[(int)selectedButtonL].GetComponentInChildren<TextMeshProUGUI>();
 			string character = buttonText.text;
 			inputField.text += character.ToString();
 		}
 
-		if (Input.GetKeyDown(KeyCode.F5))
+		if (Input.GetKeyDown(KeyCode.F1))
 		{
 			TextMeshProUGUI buttonText = buttons[(int)selectedButtonR].GetComponentInChildren<TextMeshProUGUI>();
 			string character = buttonText.text;
