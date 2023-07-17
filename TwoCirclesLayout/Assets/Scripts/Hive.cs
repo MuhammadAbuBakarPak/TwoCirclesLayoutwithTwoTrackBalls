@@ -28,7 +28,7 @@ public class Hive : MonoBehaviour
 	private const int leftTrackballDeviceID = 65599;
 	private const int rightTrackballDeviceID = 65597;
 
-	public const float moveThreshold = 1.0e-10f;
+	private const float moveThreshold = 6.0f;
 	private const float defaultSelectionTime = 0.25f;
 
 	private float lastSelectionTimeL = defaultSelectionTime;
