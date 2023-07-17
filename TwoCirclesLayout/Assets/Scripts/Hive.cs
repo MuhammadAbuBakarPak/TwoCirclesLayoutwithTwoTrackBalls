@@ -14,7 +14,7 @@ public class Hive : MonoBehaviour
 	public enum Keyname
 	{
 		KeyA, KeyB, KeyC, KeyD, KeyE, KeyF, KeyG, KeyH, KeyI, KeyJ, KeyK, KeyL, KeyM, KeyN, KeyO, KeyP, KeyQ, KeyR, KeyS, KeyT, KeyU, KeyV, KeyW, KeyX, KeyY,KeyZ, KeySpace1,KeySpace2, KeySpace3, KeySpace4, KeySpace5,
-		KeySpace6, KeySpace7, KeySpace8, Key123, KeyBackSpace, KeyEnter, KeyShift
+		KeySpace6, KeySpace7, KeySpace8, KeyNum, KeyBackSpace, KeyEnter, KeyShift
 	}
 
 	public TMP_InputField inputField;
@@ -80,7 +80,7 @@ public class Hive : MonoBehaviour
 		//inputField.ActivateInputField();
 
 		// Construct neighborhood arrays
-		neighMap.Add(Keyname.KeyA, new ArrayList(){Keyname.KeyW,Keyname.Key123,Keyname.KeyG,Keyname.KeyQ,Keyname.KeyZ,Keyname.KeyS});
+		neighMap.Add(Keyname.KeyA, new ArrayList(){Keyname.KeyW,Keyname.KeyNum,Keyname.KeyG,Keyname.KeyQ,Keyname.KeyZ,Keyname.KeyS});
 		neighMap.Add(Keyname.KeyB, new ArrayList(){Keyname.KeyJ,Keyname.KeyH,Keyname.KeyEnter,Keyname.KeySpace8,Keyname.KeySpace3,Keyname.KeyN});
 		neighMap.Add(Keyname.KeyC, new ArrayList(){Keyname.KeyF,Keyname.KeyD,Keyname.KeyX,Keyname.KeySpace1,Keyname.KeySpace2,Keyname.KeyV});
 		neighMap.Add(Keyname.KeyD, new ArrayList(){Keyname.KeyR,Keyname.KeyE,Keyname.KeyS,Keyname.KeyX,Keyname.KeyC,Keyname.KeyF});
@@ -103,18 +103,18 @@ public class Hive : MonoBehaviour
 		neighMap.Add(Keyname.KeyU, new ArrayList(){Keyname.KeySpace8,Keyname.KeySpace7,Keyname.KeyY,Keyname.KeyJ,Keyname.KeyK,Keyname.KeyI});
 		neighMap.Add(Keyname.KeyV, new ArrayList(){Keyname.KeyG,Keyname.KeyF,Keyname.KeyC,Keyname.KeySpace2,Keyname.KeySpace5,Keyname.KeyZ});
 		neighMap.Add(Keyname.KeyW, new ArrayList(){Keyname.KeyQ,Keyname.KeySpace1,Keyname.KeyT,Keyname.KeyA,Keyname.KeyS,Keyname.KeyE});
-		neighMap.Add(Keyname.KeyX, new ArrayList(){Keyname.KeyD,Keyname.KeyS,Keyname.KeyZ,Keyname.Key123,Keyname.KeySpace1,Keyname.KeyC});
+		neighMap.Add(Keyname.KeyX, new ArrayList(){Keyname.KeyD,Keyname.KeyS,Keyname.KeyZ,Keyname.KeyNum,Keyname.KeySpace1,Keyname.KeyC});
 		neighMap.Add(Keyname.KeyY, new ArrayList(){Keyname.KeySpace7,Keyname.KeySpace4,Keyname.KeyO,Keyname.KeyH,Keyname.KeyJ,Keyname.KeyU});
-		neighMap.Add(Keyname.KeyZ, new ArrayList(){Keyname.KeyS,Keyname.KeyA,Keyname.KeyV,Keyname.KeySpace5,Keyname.Key123,Keyname.KeyX});
-		neighMap.Add(Keyname.KeySpace1, new ArrayList(){Keyname.KeyC,Keyname.KeyX,Keyname.Key123,Keyname.KeyT,Keyname.KeyW,Keyname.KeySpace2});
-		neighMap.Add(Keyname.KeySpace2, new ArrayList(){Keyname.KeyV,Keyname.KeyC,Keyname.KeySpace1,Keyname.KeyG,Keyname.KeyQ,Keyname.Key123});
+		neighMap.Add(Keyname.KeyZ, new ArrayList(){Keyname.KeyS,Keyname.KeyA,Keyname.KeyV,Keyname.KeySpace5,Keyname.KeyNum,Keyname.KeyX});
+		neighMap.Add(Keyname.KeySpace1, new ArrayList(){Keyname.KeyC,Keyname.KeyX,Keyname.KeyNum,Keyname.KeyT,Keyname.KeyW,Keyname.KeySpace2});
+		neighMap.Add(Keyname.KeySpace2, new ArrayList(){Keyname.KeyV,Keyname.KeyC,Keyname.KeySpace1,Keyname.KeyG,Keyname.KeyQ,Keyname.KeyNum});
 		neighMap.Add(Keyname.KeySpace3, new ArrayList(){Keyname.KeyN,Keyname.KeyB,Keyname.KeyShift,Keyname.KeyP,Keyname.KeyH,Keyname.KeySpace4});
 		neighMap.Add(Keyname.KeySpace4, new ArrayList(){Keyname.KeyM,Keyname.KeyN,Keyname.KeySpace3,Keyname.KeyO,Keyname.KeyY,Keyname.KeyShift});
 		neighMap.Add(Keyname.KeySpace5, new ArrayList(){Keyname.KeyZ,Keyname.KeyV,Keyname.KeyQ,Keyname.KeyE,Keyname.KeyR,Keyname.KeySpace6});
-		neighMap.Add(Keyname.KeySpace6, new ArrayList(){Keyname.Key123,Keyname.KeyG,Keyname.KeySpace5,Keyname.KeyR,Keyname.KeyT,Keyname.KeyQ});
+		neighMap.Add(Keyname.KeySpace6, new ArrayList(){Keyname.KeyNum,Keyname.KeyG,Keyname.KeySpace5,Keyname.KeyR,Keyname.KeyT,Keyname.KeyQ});
 		neighMap.Add(Keyname.KeySpace7, new ArrayList(){Keyname.KeyH,Keyname.KeyShift,Keyname.KeyP,Keyname.KeyY,Keyname.KeyU,Keyname.KeySpace8});
 		neighMap.Add(Keyname.KeySpace8, new ArrayList(){Keyname.KeyB,Keyname.KeyEnter,Keyname.KeySpace7,Keyname.KeyU,Keyname.KeyI,Keyname.KeyP});
-		neighMap.Add(Keyname.Key123, new ArrayList(){Keyname.KeyX,Keyname.KeyZ,Keyname.KeySpace2,Keyname.KeySpace6,Keyname.KeyA,Keyname.KeySpace1});
+		neighMap.Add(Keyname.KeyNum, new ArrayList(){Keyname.KeyX,Keyname.KeyZ,Keyname.KeySpace2,Keyname.KeySpace6,Keyname.KeyA,Keyname.KeySpace1});
 		neighMap.Add(Keyname.KeyBackSpace, new ArrayList(){Keyname.KeyShift,Keyname.KeyO,Keyname.KeyL,Keyname.KeyEnter,Keyname.KeyP,Keyname.KeyH});
 		neighMap.Add(Keyname.KeyEnter, new ArrayList(){Keyname.KeyBackSpace,Keyname.KeyL,Keyname.KeyM,Keyname.KeyShift,Keyname.KeySpace8,Keyname.KeyB});
 		neighMap.Add(Keyname.KeyShift, new ArrayList(){Keyname.KeyEnter,Keyname.KeyM,Keyname.KeySpace4,Keyname.KeyBackSpace,Keyname.KeySpace7,Keyname.KeySpace3});
