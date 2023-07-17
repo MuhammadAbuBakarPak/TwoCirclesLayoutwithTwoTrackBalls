@@ -17,18 +17,11 @@ public class Hive : MonoBehaviour
 		KeySpace6, KeySpace7, KeySpace8, Key123, KeyBackSpace, KeyEnter, KeyShift
 	}
 
-	/*	public enum Keyname
-	{
-		KeyA, KeyB, KeyC, KeyD, KeyE, KeyF, KeyG, KeyH, KeyI, KeyJ, KeyK, KeyL, KeyM, KeyN, KeyO, KeyP, KeyQ, KeyR, KeyS
-	}
-*/
 	public TMP_InputField inputField;
 	public TextMeshProUGUI textField;
 	public GameObject[] buttons;
-	//	public GameObject[] buttonsR;
 
 	private Dictionary<Keyname, ArrayList> neighMap = new Dictionary<Keyname, ArrayList>();
-	//	private Dictionary<Keyname, ArrayList> neighMap= new Dictionary<Keyname, ArrayList>();
 
 	private readonly ConcurrentQueue<RawInput> inputQueue = new ConcurrentQueue<RawInput>();
 
@@ -79,10 +72,10 @@ public class Hive : MonoBehaviour
 
 	private void Start()
 	{
-		selectedButtonL = Keyname.KeyX; 
-		selectedButtonR = Keyname.KeyU; 
-		SetButtonColor(buttons[(int)Keyname.KeyX], selectedColor);
-		SetButtonColor(buttons[(int)Keyname.KeyU], selectedColor);
+		selectedButtonL = Keyname.KeyD; 
+		selectedButtonR = Keyname.KeyK; 
+		SetButtonColor(buttons[(int)Keyname.KeyD], selectedColor);
+		SetButtonColor(buttons[(int)Keyname.KeyK], selectedColor);
 		textField.text = sentences[currentSentenceIndex];
 		//inputField.ActivateInputField();
 
@@ -308,47 +301,6 @@ public class Hive : MonoBehaviour
 			SetButtonColor(buttons[(int)button], selectedColor);
 		}
 	}	
-
-
-	// Change selection Right
-	/*	private void SelectionChangeR(float angle)
-	{
-		ArrayList neighArray = neighMap[selectedButtonR];
-
-		if(neighArray != null)
-		{
-			SetButtonColor(buttonsR[(int)selectedButtonR], originalColor); 
-
-			if (angle > 30.0f && angle <= 90.0f) 
-			{
-				selectedButtonR = (Keyname)neighArray[0];
-			}
-			else if (angle > 90.0f &&  angle <= 150.0f)
-			{
-				selectedButtonR = (Keyname)neighArray[1];
-			}
-			else if (angle > 150.0f &&  angle <= 210.0f)
-			{
-				selectedButtonR = (Keyname)neighArray[2];
-			}
-			else if (angle > 210.0f &&  angle <= 270.0f)
-			{
-				selectedButtonR = (Keyname)neighArray[3];
-			}
-			else if (angle > 270.0f &&  angle <= 330.0f)
-			{
-				selectedButtonR = (Keyname)neighArray[4];
-			}
-			else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-			{
-				selectedButtonR = (Keyname)neighArray[5];
-			}
-
-			lastSelectionTime = defaultSelectionTime; 
-			SetButtonColor(buttonsR[(int)selectedButtonR], selectedColor);
-		}
-	}
-*/
 
 	private void OnDestroy()
 	{
