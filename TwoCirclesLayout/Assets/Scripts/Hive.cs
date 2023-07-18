@@ -182,7 +182,7 @@ public class Hive : MonoBehaviour
 			startTime = Time.time; 	// Start the timer for text entry
 		}
 
-		if (Input.GetKeyDown(KeyCode.F5))
+		if (Input.GetKeyDown(KeyCode.F6))
 		{
 			TextMeshProUGUI buttonText = buttons[(int)selectedButtonL].GetComponentInChildren<TextMeshProUGUI>();
 			string character = buttonText.text;

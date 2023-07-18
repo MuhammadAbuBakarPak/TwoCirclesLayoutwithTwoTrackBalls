@@ -7561,7 +7561,7 @@ MonoBehaviour:
   - {fileID: 322589177}
   - {fileID: 1471883047}
   - {fileID: 1345223988}
-  moveThreshold: 6
+  moveThreshold: 2
 --- !u!1 &426868676
 GameObject:
   m_ObjectHideFlags: 0
