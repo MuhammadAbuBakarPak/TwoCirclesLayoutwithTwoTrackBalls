@@ -44,11 +44,11 @@ public class Hive : MonoBehaviour
 
 	private int currentSentenceIndex = 0;	
 	private string[] sentences = {
-		"a bad fig jam",
-		"ben can hang a bag",
-		"ann had a mad camel",
-		"ben can bake a cake",
-		"hank feeding an eagle"
+		"the future is here",
+		"i love sunshine",
+		"more power to you",
+		"give me a pen",
+		"typing with trackball is easy"
 	};
 
 	private void Awake()
