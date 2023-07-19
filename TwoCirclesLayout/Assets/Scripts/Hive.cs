@@ -77,7 +77,7 @@ public class Hive : MonoBehaviour
 		SetButtonColor(buttons[(int)Keyname.KeyD], selectedColor);
 		SetButtonColor(buttons[(int)Keyname.KeyK], selectedColor);
 		textField.text = sentences[currentSentenceIndex];
-		//inputField.ActivateInputField();
+		inputField.ActivateInputField();
 
 		// Construct neighborhood arrays
 		neighMap.Add(Keyname.KeyA, new ArrayList(){Keyname.KeyW,Keyname.KeyNum,Keyname.KeyG,Keyname.KeyQ,Keyname.KeyZ,Keyname.KeyS});
@@ -157,20 +157,20 @@ public class Hive : MonoBehaviour
 	}
 
 	private void GetTrackBallInfo(out float sqrLength, out float angle, RawMouse trackball)
- 	{
+	{
 		float X = trackball.LastX;
 		float Y = -trackball.LastY;
 		sqrLength = X * X + Y * Y;
-	
+
 		angle = Mathf.Atan2(Y, X) * Mathf.Rad2Deg;
 		if (angle < 0)
 			angle += 360;  
 	}
- 
+
 	private void LateUpdate()
 	{
 		ProcessKeyPress();
-		//inputField.MoveToEndOfLine(false, false);
+		inputField.MoveToEndOfLine(false, false);
 	}
 
 
