@@ -134,10 +134,10 @@ public class Hive : MonoBehaviour
 				float trackballSqrLength, trackballAngle;
 				GetTrackBallInfo(out trackballSqrLength, out trackballAngle, val.Data.Mouse);
 
-				//Debug.Log($"Left Trackball Angle is: {leftTrackballAngle}");
 				if (lastSelectionTimeL <= 0.0f && trackballSqrLength > moveThreshold) 
 				{
 					SelectionChange(ref selectedButtonL, trackballAngle);
+					//Debug.Log($"Left Trackball Angle is: {trackballAngle}");
 					lastSelectionTimeL = defaultSelectionTime; 
 				}
 			}
@@ -146,10 +146,10 @@ public class Hive : MonoBehaviour
 				float trackballSqrLength, trackballAngle;
 				GetTrackBallInfo(out trackballSqrLength, out trackballAngle, val.Data.Mouse);
 
-				//Debug.Log($"Right Trackball Angle is: {rightTrackballAngle}");
 				if (lastSelectionTimeR <= 0.0f && trackballSqrLength > moveThreshold) 
 				{
 					SelectionChange(ref selectedButtonR, trackballAngle);
+					//Debug.Log($"Right Trackball Angle is: {trackballAngle}");
 					lastSelectionTimeR = defaultSelectionTime; 
 				}
 			}

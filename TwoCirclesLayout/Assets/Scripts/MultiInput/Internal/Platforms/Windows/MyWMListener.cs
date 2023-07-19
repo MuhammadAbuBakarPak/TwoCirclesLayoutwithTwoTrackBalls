@@ -236,7 +236,7 @@ namespace MultiInput.Internal.Platforms.Windows
                     return Win32API.DefWindowProcW(window, message, wParam, lParam);
                 }
 
-                Debug.Log(input);
+                //Debug.Log(input);
                 if (onInput?.Invoke(input) != true)
                 {
                     return Win32API.DefWindowProcW(window, message, wParam, lParam);
