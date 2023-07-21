@@ -25,8 +25,6 @@ public class Hive : MonoBehaviour
 
     private readonly ConcurrentQueue<RawInput> inputQueue = new ConcurrentQueue<RawInput>();
 
-    private List<RawMouse> trackballMovements = new List<RawMouse>();
-
     private const int leftTrackballDeviceID = 65599;
     private const int rightTrackballDeviceID = 65597;
 
@@ -129,14 +127,13 @@ public class Hive : MonoBehaviour
         lastSelectionTimeL -= Time.deltaTime;
         lastSelectionTimeR -= Time.deltaTime;
 
-        if (inputQueue.TryDequeue(out var val))
+        while (inputQueue.TryDequeue(out var val))
         {
-            trackballMovements.Add(val.Data.Mouse);
-
             if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == leftTrackballDeviceID)
             {
                 float trackballSqrLength, trackballAngle;
                 GetTrackBallInfo(out trackballSqrLength, out trackballAngle, val.Data.Mouse);
+
                // Debug.Log($"Left Trackball Angle is: {trackballAngle}");
                 if (lastSelectionTimeL <= 0.0f && trackballSqrLength > moveThreshold)
                 {
@@ -150,6 +147,7 @@ public class Hive : MonoBehaviour
                 float trackballSqrLength, trackballAngle;
                 GetTrackBallInfo(out trackballSqrLength, out trackballAngle, val.Data.Mouse);
                 //Debug.Log($"Right Trackball Angle is: {trackballAngle}");
+
                 if (lastSelectionTimeR <= 0.0f && trackballSqrLength > moveThreshold)
                 {
                     SelectionChange(ref selectedButtonR, trackballAngle);
@@ -166,10 +164,10 @@ public class Hive : MonoBehaviour
         float X = 0.0f;
         float Y = 0.0f;
 
-        foreach (var movement in trackballMovements)
+        foreach (var movement in inputQueue)
         {
-            X += movement.LastX;
-            Y += -movement.LastY;
+            X += movement.Data.Mouse.LastX;
+            Y += -movement.Data.Mouse.LastY;
         }
         sqrLength = X * X + Y * Y;
 
@@ -184,8 +182,8 @@ public class Hive : MonoBehaviour
     {
         ProcessKeyPress();
         inputField.MoveToEndOfLine(false, false);
- 
-        trackballMovements.Clear(); // Clear trackball movements at the end of the frame
+
+        inputQueue.Clear(); // Clear trackball movements at the end of the frame
     }
 
 
