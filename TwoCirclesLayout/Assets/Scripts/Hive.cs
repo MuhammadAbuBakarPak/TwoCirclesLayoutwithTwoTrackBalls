@@ -127,11 +127,18 @@ public class Hive : MonoBehaviour
         lastSelectionTimeL -= Time.deltaTime;
         lastSelectionTimeR -= Time.deltaTime;
 
+        bool activeL = false, activeR = false;
+        Vector2 moveL = Vector2.Zero;
+        Vector2 moveR = Vector2.Zero;
+        
         while (inputQueue.TryDequeue(out var val))
         {
             if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == leftTrackballDeviceID)
             {
-                float trackballSqrLength, trackballAngle;
+                activeL = true;
+                moveL.X += val.Data.Mouse.LastX;
+                moveL.Y -= val.Data.Mouse.LastY;
+/*              float trackballSqrLength, trackballAngle;
                 GetTrackBallInfo(out trackballSqrLength, out trackballAngle, val.Data.Mouse);
 
                // Debug.Log($"Left Trackball Angle is: {trackballAngle}");
@@ -140,11 +147,14 @@ public class Hive : MonoBehaviour
                     SelectionChange(ref selectedButtonL, trackballAngle);
                     lastSelectionTimeL = defaultSelectionTime;
                 }
-
+*/
             }
             else if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == rightTrackballDeviceID)
             {
-                float trackballSqrLength, trackballAngle;
+                activeR = true;
+                moveR.X += val.Data.Mouse.LastX;
+                moveR.Y -= val.Data.Mouse.LastY;
+/*                float trackballSqrLength, trackballAngle;
                 GetTrackBallInfo(out trackballSqrLength, out trackballAngle, val.Data.Mouse);
                 //Debug.Log($"Right Trackball Angle is: {trackballAngle}");
 
@@ -153,10 +163,36 @@ public class Hive : MonoBehaviour
                     SelectionChange(ref selectedButtonR, trackballAngle);
                     lastSelectionTimeR = defaultSelectionTime;
                 }
+*/
             }
+        }
+
+        // Finally compute square and angle here
+        if(activeL)
+        {
+            ...............
+            
+            if (lastSelectionTimeL <= 0.0f && trackballSqrLength > moveThreshold)
+            {
+                SelectionChange(ref selectedButtonL, trackballAngle);
+                lastSelectionTimeL = defaultSelectionTime;
+            }
+        }
+
+        if(activeR)
+        {
+            ...............
         }
     }
 
+    private void GetTrackBallInfo(out float sqrLength, out float angle, Vector2 move)
+    {
+        sqrLength = ;
+
+        angle = Mathf.Atan2(, ) * Mathf.Rad2Deg;
+        if (angle < 0)
+            angle += 360;
+    }
 
 
     private void GetTrackBallInfo(out float sqrLength, out float angle, RawMouse trackball)
