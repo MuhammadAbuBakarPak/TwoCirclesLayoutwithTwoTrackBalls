@@ -168,7 +168,6 @@ public class Hive : MonoBehaviour
                 SelectionChange(ref selectedButtonR, trackballAngle);
                 lastSelectionTimeR = defaultSelectionTime;
             }
-
         }
     }
 
@@ -177,15 +176,12 @@ public class Hive : MonoBehaviour
     {
 //        float X = move.x;
 //        float Y = move.y;
-
 //        sqrLength = X * X + Y * Y;
 
         angle = Mathf.Atan2(Y, X) * Mathf.Rad2Deg;
         if (angle < 0)
             angle += 360;
     }
-
-
 
 
     private void LateUpdate()
