@@ -167,7 +167,7 @@ public class Hive : MonoBehaviour
             }
         }
 
-        // Finally compute square and angle here
+        // Finally compute square moving lengths and angles if needed
         if(activeL)
         {
             ...............
