@@ -28,8 +28,8 @@ public class Hive : MonoBehaviour
     private const int leftTrackballDeviceID = 65599;
     private const int rightTrackballDeviceID = 65597;
 
-    private const float moveThreshold = 2.0f;
-    private const float defaultSelectionTime = 0.25f;
+    private const float moveThreshold = 4.0f;
+    private const float defaultSelectionTime = 0.2f;
 
     private float lastSelectionTimeL = defaultSelectionTime;
     private float lastSelectionTimeR = defaultSelectionTime;
@@ -127,43 +127,43 @@ public class Hive : MonoBehaviour
         lastSelectionTimeL -= Time.deltaTime;
         lastSelectionTimeR -= Time.deltaTime;
 
-        bool activeL = false, activeR = false;
-        Vector2 moveL = Vector2.zero;
-        Vector2 moveR = Vector2.zero;
+//        bool activeL = false, activeR = false;
+        Vector2 moveL = Vector2.Zero;
+        Vector2 moveR = Vector2.Zero;
         
         while (inputQueue.TryDequeue(out var val))
         {
-            if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == leftTrackballDeviceID)
+            if (lastSelectionTimeL <= 0.0f && val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == leftTrackballDeviceID)
             {
-                activeL = true;
+//                activeL = true;
                 moveL.x += val.Data.Mouse.LastX;
                 moveL.y -= val.Data.Mouse.LastY;
             }
-            else if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == rightTrackballDeviceID)
+            else if (lastSelectionTimeR <= 0.0f && val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == rightTrackballDeviceID)
             {
-                activeR = true;
+//                activeR = true;
                 moveR.x += val.Data.Mouse.LastX;
                 moveR.y -= val.Data.Mouse.LastY;
             }
         }
 
         // Finally compute square moving lengths and angles if needed
-        if(activeL)
+        if(moveL != Vector2.Zero)
         {
-            float trackballSqrLength, trackballAngle;
-            GetTrackBallInfo(out trackballSqrLength, out trackballAngle, moveL);
-            if (lastSelectionTimeL <= 0.0f && trackballSqrLength > moveThreshold)
+            float trackballAngle;
+            GetTrackBallInfo(out trackballAngle, moveL);
+            if (moveL.LengthSquared() >= moveThreshold)
             {
                 SelectionChange(ref selectedButtonL, trackballAngle);
                 lastSelectionTimeL = defaultSelectionTime;
             }
         }
 
-        if(activeR)
+        if(moveR != Vector2.Zero)
         {
-            float trackballSqrLength, trackballAngle;
-            GetTrackBallInfo(out trackballSqrLength, out trackballAngle, moveR);
-            if (lastSelectionTimeR <= 0.0f && trackballSqrLength > moveThreshold)
+            float trackballAngle;
+            GetTrackBallInfo(out trackballAngle, moveR);
+            if (moveR.LengthSquared() >= moveThreshold)
             {
                 SelectionChange(ref selectedButtonR, trackballAngle);
                 lastSelectionTimeR = defaultSelectionTime;
@@ -172,12 +172,13 @@ public class Hive : MonoBehaviour
         }
     }
 
-    private void GetTrackBallInfo(out float sqrLength, out float angle, Vector2 move)
+//    private void GetTrackBallInfo(out float sqrLength, out float angle, Vector2 move)
+    private void GetTrackBallInfo(out float angle, Vector2 move)
     {
-        float X = move.x;
-        float Y = move.y;
+//        float X = move.x;
+//        float Y = move.y;
 
-        sqrLength = X * X + Y * Y;
+//        sqrLength = X * X + Y * Y;
 
         angle = Mathf.Atan2(Y, X) * Mathf.Rad2Deg;
         if (angle < 0)
