@@ -128,8 +128,8 @@ public class Hive : MonoBehaviour
         lastSelectionTimeR -= Time.deltaTime;
 
 //        bool activeL = false, activeR = false;
-        Vector2 moveL = Vector2.Zero;
-        Vector2 moveR = Vector2.Zero;
+        Vector2 moveL = Vector2.zero;
+        Vector2 moveR = Vector2.zero;
         
         while (inputQueue.TryDequeue(out var val))
         {
@@ -148,22 +148,22 @@ public class Hive : MonoBehaviour
         }
 
         // Finally compute square moving lengths and angles if needed
-        if(moveL != Vector2.Zero)
+        if(moveL != Vector2.zero)
         {
             float trackballAngle;
             GetTrackBallInfo(out trackballAngle, moveL);
-            if (moveL.LengthSquared() >= moveThreshold)
+            if (moveL.sqrMagnitude >= moveThreshold)
             {
                 SelectionChange(ref selectedButtonL, trackballAngle);
                 lastSelectionTimeL = defaultSelectionTime;
             }
         }
 
-        if(moveR != Vector2.Zero)
+        if(moveR != Vector2.zero)
         {
             float trackballAngle;
             GetTrackBallInfo(out trackballAngle, moveR);
-            if (moveR.LengthSquared() >= moveThreshold)
+            if (moveR.sqrMagnitude >= moveThreshold)
             {
                 SelectionChange(ref selectedButtonR, trackballAngle);
                 lastSelectionTimeR = defaultSelectionTime;
@@ -174,8 +174,8 @@ public class Hive : MonoBehaviour
 //    private void GetTrackBallInfo(out float sqrLength, out float angle, Vector2 move)
     private void GetTrackBallInfo(out float angle, Vector2 move)
     {
-//        float X = move.x;
-//        float Y = move.y;
+        float X = move.x;
+        float Y = move.y;
 //        sqrLength = X * X + Y * Y;
 
         angle = Mathf.Atan2(Y, X) * Mathf.Rad2Deg;
