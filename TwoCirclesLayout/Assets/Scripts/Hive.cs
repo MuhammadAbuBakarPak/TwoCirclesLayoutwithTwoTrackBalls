@@ -6,8 +6,6 @@ using TMPro;
 using System.Collections.Concurrent;
 using MultiInput.Internal.Platforms.Windows;
 using MultiInput.Internal.Platforms.Windows.PInvokeNet;
-using System.Linq;
-
 
 public class Hive : MonoBehaviour
 {
@@ -27,14 +25,10 @@ public class Hive : MonoBehaviour
 
     private readonly ConcurrentQueue<RawInput> inputQueue = new ConcurrentQueue<RawInput>();
 
-    private List<float> leftTrackballAngles = new List<float>();
-    private List<float> rightTrackballAngles = new List<float>();
-
-    private const int trackballAngleHistorySize = 5;
     private const int leftTrackballDeviceID = 65599;
     private const int rightTrackballDeviceID = 65597;
 
-    private const float moveThreshold = 6.0f;
+    private const float moveThreshold = 2.0f;
     private const float defaultSelectionTime = 0.25f;
 
     private float lastSelectionTimeL = defaultSelectionTime;
@@ -140,21 +134,10 @@ public class Hive : MonoBehaviour
                 float trackballSqrLength, trackballAngle;
                 GetTrackBallInfo(out trackballSqrLength, out trackballAngle, val.Data.Mouse);
 
-                //Debug.Log($"Left Trackball Angle is: {trackballAngle}");
-
-                // Store the angle in the history list and keep only the last five angles
-                leftTrackballAngles.Add(trackballAngle);
-                if (leftTrackballAngles.Count > trackballAngleHistorySize)
-                {
-                    leftTrackballAngles.RemoveAt(0);
-                }
-
-                // Compute the average angle from the history list
-                float avgAngle = leftTrackballAngles.Average();
-
+                Debug.Log($"Left Trackball Angle is: {trackballAngle}");
                 if (lastSelectionTimeL <= 0.0f && trackballSqrLength > moveThreshold)
                 {
-                    SelectionChange(ref selectedButtonL, avgAngle);
+                    SelectionChange(ref selectedButtonL, trackballAngle);
                     lastSelectionTimeL = defaultSelectionTime;
                 }
             }
@@ -163,22 +146,10 @@ public class Hive : MonoBehaviour
                 float trackballSqrLength, trackballAngle;
                 GetTrackBallInfo(out trackballSqrLength, out trackballAngle, val.Data.Mouse);
 
-                //Debug.Log($"Right Trackball Angle is: {trackballAngle}");
-
-                // Store the angle in the history list and keep only the last five angles
-                rightTrackballAngles.Add(trackballAngle);
-                if (rightTrackballAngles.Count > trackballAngleHistorySize)
-                {
-                    rightTrackballAngles.RemoveAt(0);
-                }
-
-                // Compute the average angle from the history list
-                float avgAngle = rightTrackballAngles.Average();
-                Debug.Log($"Right Trackball Avg. Angle is: {avgAngle}");
-
+                Debug.Log($"Right Trackball Angle is: {trackballAngle}");
                 if (lastSelectionTimeR <= 0.0f && trackballSqrLength > moveThreshold)
                 {
-                    SelectionChange(ref selectedButtonR, avgAngle);
+                    SelectionChange(ref selectedButtonR, trackballAngle);
                     lastSelectionTimeR = defaultSelectionTime;
                 }
             }
