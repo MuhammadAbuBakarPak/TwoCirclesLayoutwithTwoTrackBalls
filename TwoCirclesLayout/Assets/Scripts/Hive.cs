@@ -182,8 +182,6 @@ public class Hive : MonoBehaviour
     {
         ProcessKeyPress();
         inputField.MoveToEndOfLine(false, false);
-
-        inputQueue.Clear(); // Clear trackball movements at the end of the frame
     }
 
 
