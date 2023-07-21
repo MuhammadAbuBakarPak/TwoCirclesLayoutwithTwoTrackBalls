@@ -131,11 +131,10 @@ public class Hive : MonoBehaviour
 
         if (inputQueue.TryDequeue(out var val))
         {
+            trackballMovements.Add(val.Data.Mouse);
+
             if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == leftTrackballDeviceID)
             {
-                trackballMovements.Add(val.Data.Mouse);
-                //Debug.Log("Left Trackball Movement - LastX: " + val.Data.Mouse.LastX + ", LastY: " + val.Data.Mouse.LastY);
-
                 float trackballSqrLength, trackballAngle;
                 GetTrackBallInfo(out trackballSqrLength, out trackballAngle, val.Data.Mouse);
                // Debug.Log($"Left Trackball Angle is: {trackballAngle}");
@@ -148,8 +147,6 @@ public class Hive : MonoBehaviour
             }
             else if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == rightTrackballDeviceID)
             {
-                trackballMovements.Add(val.Data.Mouse);
-
                 float trackballSqrLength, trackballAngle;
                 GetTrackBallInfo(out trackballSqrLength, out trackballAngle, val.Data.Mouse);
                 //Debug.Log($"Right Trackball Angle is: {trackballAngle}");
@@ -180,6 +177,8 @@ public class Hive : MonoBehaviour
         if (angle < 0)
             angle += 360;
     }
+
+
 
     private void LateUpdate()
     {
