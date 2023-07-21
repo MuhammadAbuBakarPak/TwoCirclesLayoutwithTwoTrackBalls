@@ -25,6 +25,8 @@ public class Hive : MonoBehaviour
 
     private readonly ConcurrentQueue<RawInput> inputQueue = new ConcurrentQueue<RawInput>();
 
+    private List<RawMouse> trackballMovements = new List<RawMouse>();
+
     private const int leftTrackballDeviceID = 65599;
     private const int rightTrackballDeviceID = 65597;
 
@@ -131,22 +133,26 @@ public class Hive : MonoBehaviour
         {
             if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == leftTrackballDeviceID)
             {
+                trackballMovements.Add(val.Data.Mouse);
+                //Debug.Log("Left Trackball Movement - LastX: " + val.Data.Mouse.LastX + ", LastY: " + val.Data.Mouse.LastY);
+
                 float trackballSqrLength, trackballAngle;
                 GetTrackBallInfo(out trackballSqrLength, out trackballAngle, val.Data.Mouse);
-
-                Debug.Log($"Left Trackball Angle is: {trackballAngle}");
+               // Debug.Log($"Left Trackball Angle is: {trackballAngle}");
                 if (lastSelectionTimeL <= 0.0f && trackballSqrLength > moveThreshold)
                 {
                     SelectionChange(ref selectedButtonL, trackballAngle);
                     lastSelectionTimeL = defaultSelectionTime;
                 }
+
             }
             else if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == rightTrackballDeviceID)
             {
+                trackballMovements.Add(val.Data.Mouse);
+
                 float trackballSqrLength, trackballAngle;
                 GetTrackBallInfo(out trackballSqrLength, out trackballAngle, val.Data.Mouse);
-
-                Debug.Log($"Right Trackball Angle is: {trackballAngle}");
+                //Debug.Log($"Right Trackball Angle is: {trackballAngle}");
                 if (lastSelectionTimeR <= 0.0f && trackballSqrLength > moveThreshold)
                 {
                     SelectionChange(ref selectedButtonR, trackballAngle);
@@ -156,10 +162,18 @@ public class Hive : MonoBehaviour
         }
     }
 
+
+
     private void GetTrackBallInfo(out float sqrLength, out float angle, RawMouse trackball)
     {
-        float X = trackball.LastX;
-        float Y = -trackball.LastY;
+        float X = 0.0f;
+        float Y = 0.0f;
+
+        foreach (var movement in trackballMovements)
+        {
+            X += movement.LastX;
+            Y += -movement.LastY;
+        }
         sqrLength = X * X + Y * Y;
 
         angle = Mathf.Atan2(Y, X) * Mathf.Rad2Deg;
@@ -171,6 +185,8 @@ public class Hive : MonoBehaviour
     {
         ProcessKeyPress();
         inputField.MoveToEndOfLine(false, false);
+ 
+        trackballMovements.Clear(); // Clear trackball movements at the end of the frame
     }
 
 
