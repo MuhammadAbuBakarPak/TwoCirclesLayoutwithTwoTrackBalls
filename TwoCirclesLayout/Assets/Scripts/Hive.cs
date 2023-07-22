@@ -174,11 +174,11 @@ public class Hive : MonoBehaviour
 //    private void GetTrackBallInfo(out float sqrLength, out float angle, Vector2 move)
     private void GetTrackBallInfo(out float angle, Vector2 move)
     {
-        float X = move.x;
-        float Y = move.y;
+//        float X = move.x;
+//        float Y = move.y;
 //        sqrLength = X * X + Y * Y;
 
-        angle = Mathf.Atan2(Y, X) * Mathf.Rad2Deg;
+        angle = Mathf.Atan2(move.y, move.x) * Mathf.Rad2Deg;
         if (angle < 0)
             angle += 360;
     }
