@@ -28,11 +28,14 @@ public class Hive : MonoBehaviour
     private const int leftTrackballDeviceID = 65599;
     private const int rightTrackballDeviceID = 65597;
 
-    private const float moveThreshold = 4.0f;
+    private const float moveThreshold = 1600.0f;
     private const float defaultSelectionTime = 0.2f;
 
     private float lastSelectionTimeL = defaultSelectionTime;
     private float lastSelectionTimeR = defaultSelectionTime;
+
+    private Vector2 moveL = Vector2.zero;
+    private Vector2 moveR = Vector2.zero;
 
     private Color selectedColor = new Color(0.055f, 0.561f, 0.243f);
     private Color originalColor;
@@ -127,19 +130,16 @@ public class Hive : MonoBehaviour
         lastSelectionTimeL -= Time.deltaTime;
         lastSelectionTimeR -= Time.deltaTime;
 
-//        bool activeL = false, activeR = false;
-        Vector2 moveL = Vector2.zero;
-        Vector2 moveR = Vector2.zero;
-        
+        //        bool activeL = false, activeR = false;
         while (inputQueue.TryDequeue(out var val))
         {
-            if (lastSelectionTimeL <= 0.0f && val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == leftTrackballDeviceID)
+            if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == leftTrackballDeviceID)
             {
 //                activeL = true;
                 moveL.x += val.Data.Mouse.LastX;
                 moveL.y -= val.Data.Mouse.LastY;
             }
-            else if (lastSelectionTimeR <= 0.0f && val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == rightTrackballDeviceID)
+            else if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == rightTrackballDeviceID)
             {
 //                activeR = true;
                 moveR.x += val.Data.Mouse.LastX;
@@ -148,26 +148,34 @@ public class Hive : MonoBehaviour
         }
 
         // Finally compute square moving lengths and angles if needed
-        if(moveL != Vector2.zero)
+        if (lastSelectionTimeL <= 0.0f)
         {
-            float trackballAngle;
-            GetTrackBallInfo(out trackballAngle, moveL);
-            if (moveL.sqrMagnitude >= moveThreshold)
+            if (moveL != Vector2.zero)
             {
-                SelectionChange(ref selectedButtonL, trackballAngle);
-                lastSelectionTimeL = defaultSelectionTime;
+                float trackballAngle;
+                GetTrackBallInfo(out trackballAngle, moveL);
+
+                if (moveL.sqrMagnitude >= moveThreshold)
+                    SelectionChange(ref selectedButtonL, trackballAngle);
             }
+
+            lastSelectionTimeL = defaultSelectionTime;
+            moveL = Vector2.zero;
         }
 
-        if(moveR != Vector2.zero)
+        if (lastSelectionTimeR <= 0.0f)
         {
-            float trackballAngle;
-            GetTrackBallInfo(out trackballAngle, moveR);
-            if (moveR.sqrMagnitude >= moveThreshold)
+            if (moveR != Vector2.zero)
             {
-                SelectionChange(ref selectedButtonR, trackballAngle);
-                lastSelectionTimeR = defaultSelectionTime;
+                float trackballAngle;
+                GetTrackBallInfo(out trackballAngle, moveR);
+
+                if (moveR.sqrMagnitude >= moveThreshold)
+                    SelectionChange(ref selectedButtonR, trackballAngle);
             }
+
+            lastSelectionTimeR = defaultSelectionTime;
+            moveR = Vector2.zero;
         }
     }
 
