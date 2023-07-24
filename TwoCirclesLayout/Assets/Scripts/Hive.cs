@@ -295,28 +295,28 @@ public class Hive : MonoBehaviour
         {
             SetButtonColor(buttons[(int)button], originalColor);
 
-            if (angle > 30.0f && angle <= 90.0f)
+            if (angle > 20.0f && angle <= 90.0f)
             {
                 button = (Keyname)neighArray[0];
             }
-            else if (angle > 90.0f && angle <= 150.0f)
+            else if (angle > 90.0f && angle <= 160.0f)
             {
                 button = (Keyname)neighArray[1];
             }
-            else if (angle > 150.0f && angle <= 210.0f)
+            else if (angle > 160.0f && angle <= 200.0f)
             {
                 button = (Keyname)neighArray[2];
                 Debug.Log("Angle for left selection is: " + angle);
             }
-            else if (angle > 210.0f && angle <= 270.0f)
+            else if (angle > 200.0f && angle <= 270.0f)
             {
                 button = (Keyname)neighArray[3];
             }
-            else if (angle > 270.0f && angle <= 330.0f)
+            else if (angle > 270.0f && angle <= 340.0f)
             {
                 button = (Keyname)neighArray[4];
             }
-            else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
+            else //if ((angle > 0.0f &&  angle <= 20.0f) || (angle > 340.0f &&  angle <= 360.0f))
             {
                 button = (Keyname)neighArray[5];
                 Debug.Log("Angle for right selection is: " + angle);
