@@ -306,6 +306,7 @@ public class Hive : MonoBehaviour
             else if (angle > 150.0f && angle <= 210.0f)
             {
                 button = (Keyname)neighArray[2];
+                Debug.Log("Angle for left selection is: " + angle);
             }
             else if (angle > 210.0f && angle <= 270.0f)
             {
@@ -318,6 +319,7 @@ public class Hive : MonoBehaviour
             else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
             {
                 button = (Keyname)neighArray[5];
+                Debug.Log("Angle for right selection is: " + angle);
             }
 
             //			lastSelectionTime = defaultSelectionTime; 
