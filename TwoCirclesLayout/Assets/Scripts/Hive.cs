@@ -100,7 +100,6 @@ public class Hive : MonoBehaviour
 		currentPosition.x += x * cursorSpeed * Time.deltaTime;
 		currentPosition.y -= y * cursorSpeed * Time.deltaTime;
 		cursor.transform.position = currentPosition;
-
 	}
 
 
