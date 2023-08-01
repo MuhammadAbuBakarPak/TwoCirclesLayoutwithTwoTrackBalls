@@ -110,7 +110,7 @@ public class Hive : MonoBehaviour
 	}
 
 
-	private void UpdateCursorPosition(GameObject cursor, Vector2 move) //, float z
+	private void UpdateCursorPosition(GameObject cursor, Vector2 move)
 	{
 		Vector3 currentPosition = cursor.transform.localPosition;
 		currentPosition.x += move.x * cursorSpeed * Time.deltaTime;
