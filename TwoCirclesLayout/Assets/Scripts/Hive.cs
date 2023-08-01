@@ -81,24 +81,24 @@ public class Hive : MonoBehaviour
             if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == leftTrackballDeviceID)
             {
                 float mouseX = val.Data.Mouse.LastX;
-                float mouseZ = -val.Data.Mouse.LastY;
-                UpdateCursorPosition(leftCursor, mouseX);
+                float mouseY = -val.Data.Mouse.LastY;
+                UpdateCursorPosition(leftCursor, mouseY);
             }
             else if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == rightTrackballDeviceID)
             {
                 float mouseX = val.Data.Mouse.LastX;
-                float mouseZ = -val.Data.Mouse.LastY;
-                UpdateCursorPosition(rightCursor, mouseX);
+                float mouseY = -val.Data.Mouse.LastY;
+                UpdateCursorPosition(rightCursor, mouseY);
             }
         }
 
     }
 
-    private void UpdateCursorPosition(GameObject cursor, float x) //, float z
+    private void UpdateCursorPosition(GameObject cursor, float y) //, float z
     {
         Vector3 currentPosition = cursor.transform.position;
-        currentPosition.x += x * cursorSpeed * Time.deltaTime;
-        //currentPosition.z -= z * cursorSpeed * Time.deltaTime;
+        //currentPosition.x += x * cursorSpeed * Time.deltaTime;
+        currentPosition.y -= y * cursorSpeed * Time.deltaTime;
         cursor.transform.position = currentPosition;
     }
 
