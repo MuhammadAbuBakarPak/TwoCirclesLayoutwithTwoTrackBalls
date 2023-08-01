@@ -80,30 +80,32 @@ public class Hive : MonoBehaviour
 		{
 			if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == leftTrackballDeviceID)
 			{
-				float mouseX = val.Data.Mouse.LastX;
-				float mouseY = -val.Data.Mouse.LastY;
-				UpdateCursorPosition(leftCursor, mouseX, mouseY);
-			}
+                float mouseX = val.Data.Mouse.LastX;
+                float mouseZ = -val.Data.Mouse.LastY;
+                UpdateCursorPosition(leftCursor, mouseX, mouseZ);
+            }
 			else if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == rightTrackballDeviceID)
 			{
-				float mouseX = val.Data.Mouse.LastX;
-				float mouseY = -val.Data.Mouse.LastY;
-				UpdateCursorPosition(rightCursor, mouseX, mouseY);
-			}
+                float mouseX = val.Data.Mouse.LastX;
+                float mouseZ = -val.Data.Mouse.LastY;
+                UpdateCursorPosition(rightCursor, mouseX, mouseZ);
+                Debug.Log("mouseX: " + mouseX + " mouseZ: " + mouseZ);
+            }
 		}
 
 	}
 
-	private void UpdateCursorPosition(GameObject cursor, float x, float y)
-	{
-		Vector3 currentPosition = cursor.transform.position;
-		currentPosition.x += x * cursorSpeed * Time.deltaTime;
-		currentPosition.y -= y * cursorSpeed * Time.deltaTime;
-		cursor.transform.position = currentPosition;
-	}
+
+    private void UpdateCursorPosition(GameObject cursor, float x, float z) 
+    {
+        Vector3 currentPosition = cursor.transform.position;
+        currentPosition.x += x * cursorSpeed * Time.deltaTime;
+        currentPosition.z += z * cursorSpeed * Time.deltaTime; 
+        cursor.transform.position = currentPosition;
+    }
 
 
-	private void LateUpdate()
+    private void LateUpdate()
 	{
 		ProcessKeyPress();
 		inputField.MoveToEndOfLine(false, false);
