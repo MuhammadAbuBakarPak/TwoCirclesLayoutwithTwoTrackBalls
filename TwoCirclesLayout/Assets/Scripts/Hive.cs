@@ -74,33 +74,31 @@ public class Hive : MonoBehaviour
 	}
 
 
-	public void Update()
-	{
-		while (inputQueue.TryDequeue(out var val))
-		{
-			if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == leftTrackballDeviceID)
-			{
+    public void Update()
+    {
+        while (inputQueue.TryDequeue(out var val))
+        {
+            if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == leftTrackballDeviceID)
+            {
                 float mouseX = val.Data.Mouse.LastX;
                 float mouseZ = -val.Data.Mouse.LastY;
-                UpdateCursorPosition(leftCursor, mouseX, mouseZ);
+                UpdateCursorPosition(leftCursor, mouseX);
             }
-			else if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == rightTrackballDeviceID)
-			{
+            else if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == rightTrackballDeviceID)
+            {
                 float mouseX = val.Data.Mouse.LastX;
                 float mouseZ = -val.Data.Mouse.LastY;
-                UpdateCursorPosition(rightCursor, mouseX, mouseZ);
-                Debug.Log("mouseX: " + mouseX + " mouseZ: " + mouseZ);
+                UpdateCursorPosition(rightCursor, mouseX);
             }
-		}
+        }
 
-	}
+    }
 
-
-    private void UpdateCursorPosition(GameObject cursor, float x, float z) 
+    private void UpdateCursorPosition(GameObject cursor, float x) //, float z
     {
         Vector3 currentPosition = cursor.transform.position;
         currentPosition.x += x * cursorSpeed * Time.deltaTime;
-        currentPosition.z += z * cursorSpeed * Time.deltaTime; 
+        //currentPosition.z -= z * cursorSpeed * Time.deltaTime;
         cursor.transform.position = currentPosition;
     }
 
