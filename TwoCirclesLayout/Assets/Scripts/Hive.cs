@@ -29,7 +29,7 @@ public class Hive : MonoBehaviour
 	private const int leftTrackballDeviceID = 65599;
 	private const int rightTrackballDeviceID = 65597;
 
-	private const float cursorSpeed = 0.2f;
+	private const float cursorSpeed = 0.08f;
 
 	private Color selectedColor = new Color(0.055f, 0.561f, 0.243f);
 	private Color originalColor;
