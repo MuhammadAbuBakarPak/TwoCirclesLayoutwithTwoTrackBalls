@@ -21,20 +21,15 @@ public class Hive : MonoBehaviour
 	public TextMeshProUGUI textField;
 	public GameObject[] buttons;
 
-	float cursorSpeed = 1.5f;
+    public GameObject leftCursor;
+    public GameObject rightCursor;
 
-
-	private readonly ConcurrentQueue<RawInput> inputQueue = new ConcurrentQueue<RawInput>();
+    private readonly ConcurrentQueue<RawInput> inputQueue = new ConcurrentQueue<RawInput>();
 
 	private const int leftTrackballDeviceID = 65599;
 	private const int rightTrackballDeviceID = 65597;
 
-	public GameObject leftCursor;
-	public GameObject rightCursor;
-
-	private const float moveThreshold = 1600.0f;
-
-
+    private const float cursorSpeed = 1.5f;
 
 	private Color selectedColor = new Color(0.055f, 0.561f, 0.243f);
 	private Color originalColor;
@@ -119,7 +114,19 @@ public class Hive : MonoBehaviour
 	}
 
 
-	private void LateUpdate()
+    private void SetButtonColor(GameObject button, Color color)
+    {
+        MeshRenderer[] renderers = button.GetComponents<MeshRenderer>();
+        foreach (MeshRenderer renderer in renderers)
+        {
+            renderer.material.color = color;
+        }
+    }
+
+
+
+
+    private void LateUpdate()
 	{
 		ProcessKeyPress();
 		inputField.MoveToEndOfLine(false, false);
@@ -201,18 +208,6 @@ public class Hive : MonoBehaviour
 			}
 		}
 	}
-
-
-
-	private void SetButtonColor(GameObject button, Color color)
-	{
-		MeshRenderer[] renderers = button.GetComponents<MeshRenderer>();
-		foreach (MeshRenderer renderer in renderers)
-		{
-			renderer.material.color = color;
-		}
-	}
-
 
 
 	private void OnDestroy()
