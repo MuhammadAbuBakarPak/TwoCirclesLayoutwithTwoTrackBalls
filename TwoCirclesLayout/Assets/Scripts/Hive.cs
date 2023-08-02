@@ -88,7 +88,6 @@ public class Hive : MonoBehaviour
 			}
 			else if (val.Header.Type == RawInputType.Mouse && val.Header.Device.ToInt32() == rightTrackballDeviceID)
 			{
-	
 				moveR.x += val.Data.Mouse.LastX;
 				moveR.y -= val.Data.Mouse.LastY;
 			}
@@ -112,6 +111,43 @@ public class Hive : MonoBehaviour
 		currentPosition.y -= move.y * cursorSpeed * Time.deltaTime;
 		cursor.transform.localPosition = currentPosition;
 	}
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Button")
+		{
+			Debug.Log("Collision is Happening");
+		}
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     private void SetButtonColor(GameObject button, Color color)
