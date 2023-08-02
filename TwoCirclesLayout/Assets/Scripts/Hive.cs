@@ -112,12 +112,12 @@ public class Hive : MonoBehaviour
 		cursor.transform.localPosition = currentPosition;
 	}
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Button")
-        {
-            Debug.Log("Collision is Happening");
-        }
+       // if (other.gameObject.tag == "Button")
+		//{
+			Debug.Log("Event Triggred");
+		//}
     }
 
 
