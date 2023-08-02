@@ -123,6 +123,43 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!21 &152485566
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &155795256
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,11 +380,11 @@ PrefabInstance:
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 575865034}
+      objectReference: {fileID: 152485566}
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 2008717365}
+      objectReference: {fileID: 2052782681}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
 --- !u!4 &484127373 stripped
@@ -355,43 +392,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000013889601590, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
   m_PrefabInstance: {fileID: 274005025}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &575865034
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1928412263
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +481,7 @@ MonoBehaviour:
   - {fileID: 6058842153684892724}
   leftCursor: {fileID: 2533466998301462636}
   rightCursor: {fileID: 4317229657479024044}
---- !u!43 &2008717365
+--- !u!43 &2052782681
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -758,7 +758,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!4 &4317229657479024032
 Transform:
   m_ObjectHideFlags: 0
@@ -850,7 +850,6 @@ GameObject:
   - component: {fileID: 4317229657479024034}
   - component: {fileID: 4317229657479024035}
   - component: {fileID: 4317229657479024045}
-  - component: {fileID: 4317229657479024046}
   m_Layer: 0
   m_Name: RightCursor
   m_TagString: Untagged
@@ -873,19 +872,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &4317229657479024046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4317229657479024044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 585b7944f026d7b4dba3a6e06dc3d5dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_CollisionDetection: 2
 --- !u!1 &6058842151809368192
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,6 +986,7 @@ GameObject:
   - component: {fileID: 6058842151871725912}
   - component: {fileID: 6058842151871725911}
   - component: {fileID: 6058842151871725913}
+  - component: {fileID: 6058842151871725914}
   m_Layer: 0
   m_Name: KeySpace3
   m_TagString: Button
@@ -1083,8 +1071,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921744
-  m_Center: {x: -0.0000000037252903, y: -1.420123e-16, z: 0.0024983513}
+  m_Radius: 0.008955501
+  m_Center: {x: -0.0000000035064078, y: 4.846469e-17, z: 0.0015321083}
+--- !u!54 &6058842151871725914
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842151871725909}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842151881640698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,6 +1674,7 @@ GameObject:
   - component: {fileID: 6058842151909322820}
   - component: {fileID: 6058842151909322819}
   - component: {fileID: 6058842151909322821}
+  - component: {fileID: 6058842151909322822}
   m_Layer: 0
   m_Name: KeyZ
   m_TagString: Button
@@ -1754,8 +1759,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921744
-  m_Center: {x: -0.0000000037252903, y: -0.0000000037252903, z: 0.0024983217}
+  m_Radius: 0.008977092
+  m_Center: {x: -0.000000003506409, y: 0.00004012676, z: 0.001593803}
+--- !u!54 &6058842151909322822
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842151909322817}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842151990905909
 GameObject:
   m_ObjectHideFlags: 0
@@ -2375,6 +2396,7 @@ GameObject:
   - component: {fileID: 6058842152040599319}
   - component: {fileID: 6058842152040599318}
   - component: {fileID: 6058842152040599320}
+  - component: {fileID: 6058842152040599321}
   m_Layer: 0
   m_Name: KeyQ
   m_TagString: Button
@@ -2459,8 +2481,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0.000000007450581, y: 3.5503075e-17, z: 0.0024983217}
+  m_Radius: 0.008900515
+  m_Center: {x: 0.000000007012816, y: 9.0207355e-20, z: 0.0014770934}
+--- !u!54 &6058842152040599321
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842152040599316}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842152050692544
 GameObject:
   m_ObjectHideFlags: 0
@@ -3080,6 +3118,7 @@ GameObject:
   - component: {fileID: 6058842152120636895}
   - component: {fileID: 6058842152120636894}
   - component: {fileID: 6058842152120636896}
+  - component: {fileID: 6058842152120636897}
   m_Layer: 0
   m_Name: KeyL
   m_TagString: Button
@@ -3164,8 +3203,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921744
-  m_Center: {x: 2.5849394e-26, y: -0.000000002561137, z: 0.00000004458707}
+  m_Radius: 0.008978268
+  m_Center: {x: 2.9791352e-20, y: -0.0000000023376059, z: -0.0009434322}
+--- !u!54 &6058842152120636897
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842152120636892}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842152151715106
 GameObject:
   m_ObjectHideFlags: 0
@@ -3178,6 +3233,7 @@ GameObject:
   - component: {fileID: 6058842152151715109}
   - component: {fileID: 6058842152151715108}
   - component: {fileID: 6058842152151715110}
+  - component: {fileID: 6058842152151715111}
   m_Layer: 0
   m_Name: KeyT
   m_TagString: Button
@@ -3262,8 +3318,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0.0000000027939677, y: -0.0000000037252903, z: -1.1641532e-10}
+  m_Radius: 0.009016497
+  m_Center: {x: 0.0000000023376054, y: -0.0000000035064083, z: -0.00090524956}
+--- !u!54 &6058842152151715111
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842152151715106}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842152168067777
 GameObject:
   m_ObjectHideFlags: 0
@@ -3276,6 +3348,7 @@ GameObject:
   - component: {fileID: 6058842152168067780}
   - component: {fileID: 6058842152168067779}
   - component: {fileID: 6058842152168067781}
+  - component: {fileID: 6058842152168067782}
   m_Layer: 0
   m_Name: KeyI
   m_TagString: Button
@@ -3360,8 +3433,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0, y: 3.3087225e-24, z: 0.00000004458707}
+  m_Radius: 0.008760758
+  m_Center: {x: -0.000043826596, y: 0.000021377984, z: -0.00032822214}
+--- !u!54 &6058842152168067782
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842152168067777}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842152188382187
 GameObject:
   m_ObjectHideFlags: 0
@@ -3509,6 +3598,7 @@ GameObject:
   - component: {fileID: 6058842152220134158}
   - component: {fileID: 6058842152220134157}
   - component: {fileID: 6058842152220134159}
+  - component: {fileID: 6058842152220134160}
   m_Layer: 0
   m_Name: KeyH
   m_TagString: Button
@@ -3593,8 +3683,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921744
-  m_Center: {x: -0.0000000018626451, y: 0.000000002211891, z: 0.0024983364}
+  m_Radius: 0.008726682
+  m_Center: {x: -0.00014459724, y: 0.00010314686, z: 0.0024983415}
+--- !u!54 &6058842152220134160
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842152220134155}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842152227806280
 GameObject:
   m_ObjectHideFlags: 0
@@ -3607,6 +3713,7 @@ GameObject:
   - component: {fileID: 6058842152227806283}
   - component: {fileID: 6058842152227806282}
   - component: {fileID: 6058842152227806284}
+  - component: {fileID: 6058842152227806285}
   m_Layer: 0
   m_Name: Key123
   m_TagString: Button
@@ -3691,8 +3798,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0.000000007450581, y: -0.000000013038516, z: 0.0024983366}
+  m_Radius: 0.009044695
+  m_Center: {x: 0.000050035276, y: -0.000037131107, z: 0.0015341438}
+--- !u!54 &6058842152227806285
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842152227806280}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842152251018579
 GameObject:
   m_ObjectHideFlags: 0
@@ -3975,6 +4098,7 @@ GameObject:
   - component: {fileID: 6058842152252475828}
   - component: {fileID: 6058842152252475827}
   - component: {fileID: 6058842152252475829}
+  - component: {fileID: 6058842152252475830}
   m_Layer: 0
   m_Name: KeyE
   m_TagString: Button
@@ -4059,8 +4183,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0.000000007450581, y: -0.0000000018626451, z: -1.1641532e-10}
+  m_Radius: 0.008923762
+  m_Center: {x: 0.000000007012816, y: -0.0000000023376054, z: -0.0009980057}
+--- !u!54 &6058842152252475830
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842152252475825}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842152267864650
 GameObject:
   m_ObjectHideFlags: 0
@@ -4953,6 +5093,7 @@ GameObject:
   - component: {fileID: 6058842152430654081}
   - component: {fileID: 6058842152430654080}
   - component: {fileID: 6058842152430654082}
+  - component: {fileID: 6058842152430654083}
   m_Layer: 0
   m_Name: KeyW
   m_TagString: Button
@@ -5037,8 +5178,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0.000000007450581, y: 2.6627306e-17, z: 0.0024983068}
+  m_Radius: 0.008122825
+  m_Center: {x: 0.00032685685, y: 0.00020003358, z: 0.003936817}
+--- !u!54 &6058842152430654083
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842152430654078}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842152462244602
 GameObject:
   m_ObjectHideFlags: 0
@@ -5961,6 +6118,7 @@ GameObject:
   - component: {fileID: 6058842152662257916}
   - component: {fileID: 6058842152662257915}
   - component: {fileID: 6058842152662257917}
+  - component: {fileID: 6058842152662257918}
   m_Layer: 0
   m_Name: KeyBackSpace
   m_TagString: Button
@@ -6045,8 +6203,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921744
-  m_Center: {x: -0.000000007450581, y: 0.0000000011641532, z: 0.00000004458707}
+  m_Radius: 0.008808415
+  m_Center: {x: -0.0000072477455, y: 0.0000000011688029, z: 0.00000004441452}
+--- !u!54 &6058842152662257918
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842152662257913}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842152675982745
 GameObject:
   m_ObjectHideFlags: 0
@@ -6430,6 +6604,7 @@ GameObject:
   - component: {fileID: 6058842152733957778}
   - component: {fileID: 6058842152733957777}
   - component: {fileID: 6058842152733957779}
+  - component: {fileID: 6058842152733957780}
   m_Layer: 0
   m_Name: KeyB
   m_TagString: Button
@@ -6514,8 +6689,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: -0.0000000055879354, y: -9.313226e-10, z: 0.0024983662}
+  m_Radius: 0.008371931
+  m_Center: {x: 0.00037098507, y: 0.00012905867, z: 0.0025061585}
+--- !u!54 &6058842152733957780
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842152733957775}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842152765486087
 GameObject:
   m_ObjectHideFlags: 0
@@ -6528,6 +6719,7 @@ GameObject:
   - component: {fileID: 6058842152765486090}
   - component: {fileID: 6058842152765486089}
   - component: {fileID: 6058842152765486091}
+  - component: {fileID: 6058842152765486092}
   m_Layer: 0
   m_Name: KeyS
   m_TagString: Button
@@ -6612,8 +6804,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0.000000007450581, y: -3.4924594e-10, z: 0.0024983217}
+  m_Radius: 0.008855649
+  m_Center: {x: 0.000000007012816, y: -5.786762e-18, z: 0.0014322278}
+--- !u!54 &6058842152765486092
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842152765486087}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842152766799556
 GameObject:
   m_ObjectHideFlags: 0
@@ -6626,6 +6834,7 @@ GameObject:
   - component: {fileID: 6058842152766799559}
   - component: {fileID: 6058842152766799558}
   - component: {fileID: 6058842152766799560}
+  - component: {fileID: 6058842152766799561}
   m_Layer: 0
   m_Name: KeySpace5
   m_TagString: Button
@@ -6710,8 +6919,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0.000000007450581, y: 0.0000000018626451, z: -1.1641532e-10}
+  m_Radius: 0.008827344
+  m_Center: {x: -0.00036829791, y: -0.00010707986, z: -0.00083317416}
+--- !u!54 &6058842152766799561
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842152766799556}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842152789982803
 GameObject:
   m_ObjectHideFlags: 0
@@ -6723,8 +6948,8 @@ GameObject:
   - component: {fileID: 6058842152789982804}
   - component: {fileID: 6058842152789982806}
   - component: {fileID: 6058842152789982805}
-  - component: {fileID: 6058842152789982808}
   - component: {fileID: 6058842152789982809}
+  - component: {fileID: 6058842152789982810}
   m_Layer: 0
   m_Name: KeySpace8
   m_TagString: Button
@@ -6798,20 +7023,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6058842152789982803}
   m_Mesh: {fileID: -1198743231517016826, guid: 0bdd31b9cc7e29a439161505a79230ad, type: 3}
---- !u!64 &6058842152789982808
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6058842152789982803}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1198743231517016826, guid: 0bdd31b9cc7e29a439161505a79230ad, type: 3}
 --- !u!135 &6058842152789982809
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6823,8 +7034,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.0075154407
-  m_Center: {x: 0.0006076663, y: -0.0000000023376057, z: 0.0030140246}
+  m_Radius: 0.0071263416
+  m_Center: {x: 0.0005121518, y: -0.0000000023376057, z: 0.0030140246}
+--- !u!54 &6058842152789982810
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842152789982803}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842152806527052
 GameObject:
   m_ObjectHideFlags: 0
@@ -7444,6 +7671,7 @@ GameObject:
   - component: {fileID: 6058842152915905775}
   - component: {fileID: 6058842152915905774}
   - component: {fileID: 6058842152915905776}
+  - component: {fileID: 6058842152915905777}
   m_Layer: 0
   m_Name: KeyP
   m_TagString: Button
@@ -7528,8 +7756,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.00892992
-  m_Center: {x: -0.000000022207253, y: -0.0000000035064087, z: -0.0009917938}
+  m_Radius: 0.008844635
+  m_Center: {x: -0.000000022207253, y: -0.0000000035064087, z: -0.001077079}
+--- !u!54 &6058842152915905777
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842152915905772}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842152920320181
 GameObject:
   m_ObjectHideFlags: 0
@@ -8014,6 +8258,7 @@ GameObject:
   - component: {fileID: 6058842152994932065}
   - component: {fileID: 6058842152994932064}
   - component: {fileID: 6058842152994932066}
+  - component: {fileID: 6058842152994932067}
   m_Layer: 0
   m_Name: KeySpace6
   m_TagString: Button
@@ -8098,8 +8343,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 3.352659e-30, y: -1.6543612e-24, z: 0.000000014784746}
+  m_Radius: 0.008683365
+  m_Center: {x: 0.0000018005406, y: -2.8977292e-19, z: 0.000000015194438}
+--- !u!54 &6058842152994932067
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842152994932062}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153001622553
 GameObject:
   m_ObjectHideFlags: 0
@@ -8112,6 +8373,7 @@ GameObject:
   - component: {fileID: 6058842153001622556}
   - component: {fileID: 6058842153001622555}
   - component: {fileID: 6058842153001622557}
+  - component: {fileID: 6058842153001622558}
   m_Layer: 0
   m_Name: KeyJ
   m_TagString: Button
@@ -8196,8 +8458,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921744
-  m_Center: {x: -0.000000007450581, y: 0.0000000026775522, z: 0.0024983513}
+  m_Radius: 0.009071681
+  m_Center: {x: -0.000000007012815, y: 0.000027293887, z: 0.0016755766}
+--- !u!54 &6058842153001622558
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153001622553}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153003623913
 GameObject:
   m_ObjectHideFlags: 0
@@ -8345,6 +8623,7 @@ GameObject:
   - component: {fileID: 6058842153006893125}
   - component: {fileID: 6058842153006893124}
   - component: {fileID: 6058842153006893126}
+  - component: {fileID: 6058842153006893127}
   m_Layer: 0
   m_Name: KeyC
   m_TagString: Button
@@ -8429,8 +8708,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0.000000007450581, y: -0.0000000055879354, z: 0.00000004458707}
+  m_Radius: 0.008920558
+  m_Center: {x: 0.000025490419, y: -0.0000000058440137, z: -0.0010266351}
+--- !u!54 &6058842153006893127
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153006893122}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153033633144
 GameObject:
   m_ObjectHideFlags: 0
@@ -8443,6 +8738,7 @@ GameObject:
   - component: {fileID: 6058842153033633147}
   - component: {fileID: 6058842153033633146}
   - component: {fileID: 6058842153033633148}
+  - component: {fileID: 6058842153033633149}
   m_Layer: 0
   m_Name: KeySpace4
   m_TagString: Button
@@ -8527,8 +8823,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921743
-  m_Center: {x: -0.000000007450581, y: -0.0000000037252903, z: 0.00000004458707}
+  m_Radius: 0.008965992
+  m_Center: {x: -0.000000007012815, y: -0.0000000035064085, z: -0.00095571176}
+--- !u!54 &6058842153033633149
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153033633144}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153033820893
 GameObject:
   m_ObjectHideFlags: 0
@@ -8541,6 +8853,7 @@ GameObject:
   - component: {fileID: 6058842153033820896}
   - component: {fileID: 6058842153033820895}
   - component: {fileID: 6058842153033820897}
+  - component: {fileID: 6058842153033820898}
   m_Layer: 0
   m_Name: KeySpace2
   m_TagString: Button
@@ -8625,8 +8938,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0.0000000018626451, y: -0.000000011175871, z: 0.00000004458707}
+  m_Radius: 0.008976461
+  m_Center: {x: 0.0000000023376054, y: -0.0000000116880265, z: -0.000945239}
+--- !u!54 &6058842153033820898
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153033820893}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153043662161
 GameObject:
   m_ObjectHideFlags: 0
@@ -8841,6 +9170,7 @@ GameObject:
   - component: {fileID: 6058842153105559961}
   - component: {fileID: 6058842153105559960}
   - component: {fileID: 6058842153105559962}
+  - component: {fileID: 6058842153105559963}
   m_Layer: 0
   m_Name: KeyK
   m_TagString: Button
@@ -8925,8 +9255,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921743
-  m_Center: {x: -0.0000000037252903, y: -0.000000002910383, z: 0.00000004458707}
+  m_Radius: 0.008895949
+  m_Center: {x: -0.0000000035064076, y: -0.0000000023376057, z: -0.0010257564}
+--- !u!54 &6058842153105559963
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153105559958}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153126526057
 GameObject:
   m_ObjectHideFlags: 0
@@ -9040,6 +9386,7 @@ GameObject:
   - component: {fileID: 6058842153141635858}
   - component: {fileID: 6058842153141635857}
   - component: {fileID: 6058842153141635859}
+  - component: {fileID: 6058842153141635860}
   m_Layer: 0
   m_Name: KeyD
   m_TagString: Button
@@ -9124,8 +9471,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0.000000007450581, y: 9.313226e-10, z: 0.000000014784746}
+  m_Radius: 0.008034476
+  m_Center: {x: 0.000000007012816, y: 0.0000000011688027, z: 0.0018872848}
+--- !u!54 &6058842153141635860
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153141635855}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153150868515
 GameObject:
   m_ObjectHideFlags: 0
@@ -9610,6 +9973,7 @@ GameObject:
   - component: {fileID: 6058842153213023908}
   - component: {fileID: 6058842153213023907}
   - component: {fileID: 6058842153213023909}
+  - component: {fileID: 6058842153213023910}
   m_Layer: 0
   m_Name: KeyU
   m_TagString: Button
@@ -9694,8 +10058,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: -0.0000000037252903, y: 0.0000000018626451, z: 0.000000029685907}
+  m_Radius: 0.008589742
+  m_Center: {x: -0.000000003506408, y: 0.000037769856, z: 0.000000030388883}
+--- !u!54 &6058842153213023910
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153213023905}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153214125625
 GameObject:
   m_ObjectHideFlags: 0
@@ -9977,7 +10357,8 @@ GameObject:
   - component: {fileID: 6058842153242474843}
   - component: {fileID: 6058842153242474845}
   - component: {fileID: 6058842153242474844}
-  - component: {fileID: 6058842153242474846}
+  - component: {fileID: 6058842153242474847}
+  - component: {fileID: 6058842153242474848}
   m_Layer: 0
   m_Name: KeyO
   m_TagString: Button
@@ -10051,7 +10432,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6058842153242474842}
   m_Mesh: {fileID: 7320337711353344170, guid: 0bdd31b9cc7e29a439161505a79230ad, type: 3}
---- !u!135 &6058842153242474846
+--- !u!54 &6058842153242474847
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153242474842}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
+--- !u!135 &6058842153242474848
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10062,8 +10459,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 2.5849394e-26, y: 0.0000000018626451, z: 0.00000004458707}
+  m_Radius: 0.007883028
+  m_Center: {x: 0.00018076936, y: 0.000050300594, z: 0.0014955142}
 --- !u!1 &6058842153247202146
 GameObject:
   m_ObjectHideFlags: 0
@@ -10413,6 +10810,7 @@ GameObject:
   - component: {fileID: 6058842153281926946}
   - component: {fileID: 6058842153281926945}
   - component: {fileID: 6058842153281926947}
+  - component: {fileID: 6058842153281926948}
   m_Layer: 0
   m_Name: KeyM
   m_TagString: Button
@@ -10497,8 +10895,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0, y: -0.000000004656613, z: 0.00000004458707}
+  m_Radius: 0.009099504
+  m_Center: {x: 0.00014703363, y: 0.000061664854, z: -0.0012932775}
+--- !u!54 &6058842153281926948
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153281926943}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153282926822
 GameObject:
   m_ObjectHideFlags: 0
@@ -10713,6 +11127,7 @@ GameObject:
   - component: {fileID: 6058842153305963046}
   - component: {fileID: 6058842153305963045}
   - component: {fileID: 6058842153305963047}
+  - component: {fileID: 6058842153305963048}
   m_Layer: 0
   m_Name: KeyX
   m_TagString: Button
@@ -10797,8 +11212,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0.000000007450581, y: -0.000000006519258, z: 0.000000029685907}
+  m_Radius: 0.008868126
+  m_Center: {x: 0.0000000070128165, y: -0.000000007012816, z: -0.0010535888}
+--- !u!54 &6058842153305963048
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153305963043}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153350806615
 GameObject:
   m_ObjectHideFlags: 0
@@ -10811,6 +11242,7 @@ GameObject:
   - component: {fileID: 6058842153350806618}
   - component: {fileID: 6058842153350806617}
   - component: {fileID: 6058842153350806619}
+  - component: {fileID: 6058842153350806620}
   m_Layer: 0
   m_Name: KeyA
   m_TagString: Button
@@ -10895,8 +11327,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0.000000007450581, y: -0.0000000013969839, z: 0.0024983217}
+  m_Radius: 0.008147864
+  m_Center: {x: -0.0000006779056, y: -0.000233646, z: 0.0032516122}
+--- !u!54 &6058842153350806620
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153350806615}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153438665032
 GameObject:
   m_ObjectHideFlags: 0
@@ -11145,6 +11593,7 @@ GameObject:
   - component: {fileID: 6058842153488264158}
   - component: {fileID: 6058842153488264157}
   - component: {fileID: 6058842153488264159}
+  - component: {fileID: 6058842153488264160}
   m_Layer: 0
   m_Name: KeySpace7
   m_TagString: Button
@@ -11229,8 +11678,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.0074255853
-  m_Center: {x: -0.0010855079, y: 0.00020060633, z: 0.0023025214}
+  m_Radius: 0.0077944244
+  m_Center: {x: -0.00014635162, y: 0.00036189644, z: 0.0048914333}
+--- !u!54 &6058842153488264160
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153488264155}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153501424889
 GameObject:
   m_ObjectHideFlags: 0
@@ -11580,6 +12045,7 @@ GameObject:
   - component: {fileID: 6058842153566105156}
   - component: {fileID: 6058842153566105155}
   - component: {fileID: 6058842153566105157}
+  - component: {fileID: 6058842153566105158}
   m_Layer: 0
   m_Name: KeyG
   m_TagString: Button
@@ -11664,8 +12130,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: -0.0000000022118911, y: -5.820766e-10, z: 0.000000014784746}
+  m_Radius: 0.008957854
+  m_Center: {x: -0.0000000023376054, y: -0.000034847853, z: -0.0009290347}
+--- !u!54 &6058842153566105158
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153566105153}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153593169734
 GameObject:
   m_ObjectHideFlags: 0
@@ -11678,6 +12160,7 @@ GameObject:
   - component: {fileID: 6058842153593169737}
   - component: {fileID: 6058842153593169736}
   - component: {fileID: 6058842153593169738}
+  - component: {fileID: 6058842153593169739}
   m_Layer: 0
   m_Name: KeyF
   m_TagString: Button
@@ -11762,8 +12245,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 3.352659e-30, y: -0.0000000024447218, z: 0.000000014784746}
+  m_Radius: 0.008664003
+  m_Center: {x: -0.00003234194, y: -0.000034500717, z: 0.000000015194438}
+--- !u!54 &6058842153593169739
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153593169734}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153647034937
 GameObject:
   m_ObjectHideFlags: 0
@@ -11911,6 +12410,7 @@ GameObject:
   - component: {fileID: 6058842153684892727}
   - component: {fileID: 6058842153684892726}
   - component: {fileID: 6058842153684892728}
+  - component: {fileID: 6058842153684892729}
   m_Layer: 0
   m_Name: KeyShift
   m_TagString: Button
@@ -11995,8 +12495,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921744
-  m_Center: {x: 0.000000007450581, y: -0.0000000055879354, z: 0.00000005948823}
+  m_Radius: 0.008561435
+  m_Center: {x: 0.0001283205, y: 0.0000050790336, z: 0.00018629436}
+--- !u!54 &6058842153684892729
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153684892724}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153701385081
 GameObject:
   m_ObjectHideFlags: 0
@@ -12009,6 +12525,7 @@ GameObject:
   - component: {fileID: 6058842153701385084}
   - component: {fileID: 6058842153701385083}
   - component: {fileID: 6058842153701385085}
+  - component: {fileID: 6058842153701385086}
   m_Layer: 0
   m_Name: KeyR
   m_TagString: Button
@@ -12093,8 +12610,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0.0000000055879354, y: -1.6543612e-24, z: 0.000000014784746}
+  m_Radius: 0.009033815
+  m_Center: {x: 0.0000000058440137, y: 1.6732739e-18, z: -0.0008879127}
+--- !u!54 &6058842153701385086
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153701385081}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153742768640
 GameObject:
   m_ObjectHideFlags: 0
@@ -12377,6 +12910,7 @@ GameObject:
   - component: {fileID: 6058842153789078121}
   - component: {fileID: 6058842153789078120}
   - component: {fileID: 6058842153789078122}
+  - component: {fileID: 6058842153789078123}
   m_Layer: 0
   m_Name: KeySpace1
   m_TagString: Button
@@ -12461,8 +12995,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0.000000007450581, y: -0.0000000018626451, z: 0.000000029685907}
+  m_Radius: 0.007649427
+  m_Center: {x: 0.000000007012816, y: -0.00007251369, z: 0.0028940216}
+--- !u!54 &6058842153789078123
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153789078118}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153794774567
 GameObject:
   m_ObjectHideFlags: 0
@@ -12475,6 +13025,7 @@ GameObject:
   - component: {fileID: 6058842153794774570}
   - component: {fileID: 6058842153794774569}
   - component: {fileID: 6058842153794774571}
+  - component: {fileID: 6058842153794774572}
   m_Layer: 0
   m_Name: KeyEnter
   m_TagString: Button
@@ -12559,8 +13110,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 2.5849394e-26, y: -0.000000007450581, z: 0.00000004458707}
+  m_Radius: 0.008665959
+  m_Center: {x: 0.00011753538, y: -0.0000000070128165, z: 0.000000044414524}
+--- !u!54 &6058842153794774572
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153794774567}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153796049617
 GameObject:
   m_ObjectHideFlags: 0
@@ -12809,6 +13376,7 @@ GameObject:
   - component: {fileID: 6058842153800987117}
   - component: {fileID: 6058842153800987116}
   - component: {fileID: 6058842153800987118}
+  - component: {fileID: 6058842153800987119}
   m_Layer: 0
   m_Name: KeyV
   m_TagString: Button
@@ -12893,8 +13461,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0.000000007450581, y: -0.000000006519258, z: -0.000000015017577}
+  m_Radius: 0.00864341
+  m_Center: {x: -0.000011839971, y: -0.00014880378, z: -0.000000015194438}
+--- !u!54 &6058842153800987119
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153800987114}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153830066895
 GameObject:
   m_ObjectHideFlags: 0
@@ -13042,6 +13626,7 @@ GameObject:
   - component: {fileID: 6058842153845576695}
   - component: {fileID: 6058842153845576694}
   - component: {fileID: 6058842153845576696}
+  - component: {fileID: 6058842153845576697}
   m_Layer: 0
   m_Name: KeyN
   m_TagString: Button
@@ -13126,8 +13711,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921742
-  m_Center: {x: 0.0000000037252903, y: -0.0000000018626451, z: 0.000000029685907}
+  m_Radius: 0.008610914
+  m_Center: {x: -0.00012224274, y: 0.0003653069, z: 0.000046528887}
+--- !u!54 &6058842153845576697
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153845576692}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153851957372
 GameObject:
   m_ObjectHideFlags: 0
@@ -13342,6 +13943,7 @@ GameObject:
   - component: {fileID: 6058842153863088683}
   - component: {fileID: 6058842153863088682}
   - component: {fileID: 6058842153863088684}
+  - component: {fileID: 6058842153863088685}
   m_Layer: 0
   m_Name: KeyY
   m_TagString: Button
@@ -13426,8 +14028,24 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009921743
-  m_Center: {x: -0.0000000055879354, y: 5.1663774e-28, z: 0.0024983364}
+  m_Radius: 0.008936541
+  m_Center: {x: -0.0000000058440133, y: 2.7333313e-25, z: 0.001513135}
+--- !u!54 &6058842153863088685
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058842153863088680}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &6058842153881606511
 GameObject:
   m_ObjectHideFlags: 0
