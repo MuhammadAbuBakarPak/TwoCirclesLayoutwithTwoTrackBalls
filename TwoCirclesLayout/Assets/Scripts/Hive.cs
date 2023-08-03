@@ -31,8 +31,8 @@ public class Hive : MonoBehaviour
 
     private const float cursorSpeed = 1.5f;
 
-	private Color selectedColor = new Color(0.055f, 0.561f, 0.243f);
-	private Color originalColor;
+	//private Color selectedColor = new Color(0.055f, 0.561f, 0.243f);
+	//private Color originalColor;
 
 	private Keyname selectedButtonL;
 	private Keyname selectedButtonR;
@@ -116,37 +116,10 @@ public class Hive : MonoBehaviour
 
 
 
-
-
-    public void ChangeButtonColor(string buttonTag, Color newColor)
+    public void SetButtonColor(Color color, string buttonTag)
     {
-        // Find the button with the specified tag.
         GameObject button = GameObject.FindGameObjectWithTag(buttonTag);
 
-        // Change the button color.
-        if (button != null)
-        {
-            SetButtonColor(button, newColor);
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private void SetButtonColor(GameObject button, Color color)
-    {
         MeshRenderer[] renderers = button.GetComponents<MeshRenderer>();
         foreach (MeshRenderer renderer in renderers)
         {

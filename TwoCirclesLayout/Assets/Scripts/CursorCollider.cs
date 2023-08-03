@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class CursorCollider : MonoBehaviour
 {
-
-    // Reference to the Hive script.
     private Hive hiveScript;
 
     private Color selectedColor = new Color(0.055f, 0.561f, 0.243f);
@@ -11,7 +9,6 @@ public class CursorCollider : MonoBehaviour
 
     private void Start()
     {
-        // Get the Hive script.
         hiveScript = FindObjectOfType<Hive>();
     }
 
@@ -20,11 +17,11 @@ public class CursorCollider : MonoBehaviour
     {
         if (other.gameObject.tag == "RightHiveButton")
         {
-            hiveScript.ChangeButtonColor("RightHiveButton", selectedColor);
+            hiveScript.SetButtonColor( selectedColor, "RightHiveButton");
         }
         else if (other.gameObject.tag == "LeftHiveButton")
         {
-            hiveScript.ChangeButtonColor("LeftHiveButton", selectedColor);
+            hiveScript.SetButtonColor( selectedColor, "LeftHiveButton");
         }
     }
 
@@ -32,11 +29,11 @@ public class CursorCollider : MonoBehaviour
     {
         if (other.gameObject.tag == "RightHiveButton")
         {
-            hiveScript.ChangeButtonColor("RightHiveButton", originalColor);
+            hiveScript.SetButtonColor(originalColor, "RightHiveButton");
         }
         else if (other.gameObject.tag == "LeftHiveButton")
         {
-            hiveScript.ChangeButtonColor("LeftHiveButton", originalColor);
+            hiveScript.SetButtonColor(originalColor, "LeftHiveButton");
         }
     }
 
