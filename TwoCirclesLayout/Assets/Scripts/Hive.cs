@@ -10,6 +10,8 @@ using MultiInput.Internal.Platforms.Windows.PInvokeNet;
 public class Hive : MonoBehaviour
 {
 	private MyWMListener listener;
+    private LeftCursorCollider leftCursorCollider;
+    private RightCursorCollider rightCursorCollider;
 
     public enum Keyname
     {
@@ -51,7 +53,10 @@ public class Hive : MonoBehaviour
 	private void Awake()
 	{
 		listener = new MyWMListener(OnInput, OnDeviceAdded, OnDeviceRemoved);
-	}
+
+        leftCursorCollider = leftCursor.GetComponent<LeftCursorCollider>();
+        rightCursorCollider = rightCursor.GetComponent<RightCursorCollider>();
+    }
 
 	private bool OnInput(RawInput input)
 	{
@@ -96,7 +101,7 @@ public class Hive : MonoBehaviour
 		if (moveL != Vector2.zero)
 		{
 			UpdateCursorPosition(leftCursor,moveL);
-		}
+        }
 		if (moveR != Vector2.zero)
 		{
 			UpdateCursorPosition(rightCursor, moveR);
@@ -112,18 +117,12 @@ public class Hive : MonoBehaviour
 		cursor.transform.localPosition = currentPosition;
 	}
 
+
+
     private void OnTriggerEnter(Collider other)
     {
-       // if (other.gameObject.tag == "Button")
-		//{
-			Debug.Log("Event Triggred");
-		//}
+		Debug.Log("This tigger happened in Hive");
     }
-
-
-
-
-
 
 
 

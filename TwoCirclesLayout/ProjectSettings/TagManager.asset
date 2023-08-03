@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Button
   - Selectable
+  - LeftHiveButton
+  - RightHiveButton
   layers:
   - Default
   - TransparentFX
