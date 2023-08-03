@@ -118,7 +118,17 @@ public class Hive : MonoBehaviour
 
 
 
+    public void ChangeButtonColor(string buttonTag, Color newColor)
+    {
+        // Find the button with the specified tag.
+        GameObject button = GameObject.FindGameObjectWithTag(buttonTag);
 
+        // Change the button color.
+        if (button != null)
+        {
+            SetButtonColor(button, newColor);
+        }
+    }
 
 
 
