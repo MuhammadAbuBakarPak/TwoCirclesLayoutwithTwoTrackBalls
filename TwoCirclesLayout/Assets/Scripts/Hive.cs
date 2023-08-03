@@ -98,6 +98,7 @@ public class Hive : MonoBehaviour
 		{
 			UpdateCursorPosition(leftCursor,moveL);
         }
+
 		if (moveR != Vector2.zero)
 		{
 			UpdateCursorPosition(rightCursor, moveR);
