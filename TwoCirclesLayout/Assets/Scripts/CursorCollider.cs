@@ -17,58 +17,28 @@ public class CursorCollider : MonoBehaviour
     {
         if (other.gameObject.tag == "RightHiveButton")
         {
-            hiveScript.SetButtonColor( selectedColor, "RightHiveButton");
+            hiveScript.SetButtonColor(selectedColor, other.gameObject);
+            hiveScript.selectedButtonR = other.gameObject;
         }
         else if (other.gameObject.tag == "LeftHiveButton")
         {
-            hiveScript.SetButtonColor( selectedColor, "LeftHiveButton");
+            hiveScript.SetButtonColor(selectedColor, other.gameObject);
+            hiveScript.selectedButtonL = other.gameObject;
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "RightHiveButton")
+        if (other.gameObject == hiveScript.selectedButtonR)
         {
-            hiveScript.SetButtonColor(originalColor, "RightHiveButton");
+            hiveScript.SetButtonColor(originalColor, hiveScript.selectedButtonR);
+            hiveScript.selectedButtonR = null;
         }
-        else if (other.gameObject.tag == "LeftHiveButton")
+        else if (other.gameObject == hiveScript.selectedButtonL)
         {
-            hiveScript.SetButtonColor(originalColor, "LeftHiveButton");
+            hiveScript.SetButtonColor(originalColor, hiveScript.selectedButtonL);
+            hiveScript.selectedButtonL = null;
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
-        public void OnTriggerExit(Collider other)
-        {
-            if (other.gameObject.tag == "RightHiveButton")
-            {
-                Debug.Log("Triggred Exited right");
-            }
-            else if (other.gameObject.tag == "LeftHiveButton")
-            {
-                Debug.Log("Triggred Exited Left");
-            }
-        }
-    */
 }

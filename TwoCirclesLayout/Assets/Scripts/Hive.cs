@@ -11,11 +11,7 @@ public class Hive : MonoBehaviour
 {
 	private MyWMListener listener;
 
-    public enum Keyname
-    {
-        KeyA, KeyB, KeyC, KeyD, KeyE, KeyF, KeyG, KeyH, KeyI, KeyJ, KeyK, KeyL, KeyM, KeyN, KeyO, KeyP, KeyQ, KeyR, KeyS, KeyT, KeyU, KeyV, KeyW, KeyX, KeyY, KeyZ, KeySpace1, KeySpace2, KeySpace3, KeySpace4, KeySpace5, KeySpace6, KeySpace7, KeySpace8, KeyNum,
-        KeyBackSpace, KeyEnter, KeyShift
-    }
+    private readonly ConcurrentQueue<RawInput> inputQueue = new ConcurrentQueue<RawInput>();
 
     public TMP_InputField inputField;
 	public TextMeshProUGUI textField;
@@ -24,20 +20,15 @@ public class Hive : MonoBehaviour
     public GameObject leftCursor;
     public GameObject rightCursor;
 
-    private readonly ConcurrentQueue<RawInput> inputQueue = new ConcurrentQueue<RawInput>();
-
 	private const int leftTrackballDeviceID = 65599;
 	private const int rightTrackballDeviceID = 65597;
 
     private const float cursorSpeed = 1.5f;
 
-	//private Color selectedColor = new Color(0.055f, 0.561f, 0.243f);
-	//private Color originalColor;
+    public GameObject selectedButtonR;
+    public GameObject selectedButtonL;
 
-	private Keyname selectedButtonL;
-	private Keyname selectedButtonR;
-
-	private float startTime = 0.0f;
+    private float startTime = 0.0f;
 
 	private int currentSentenceIndex = 0;
 	private string[] sentences = {
@@ -116,17 +107,14 @@ public class Hive : MonoBehaviour
 
 
 
-    public void SetButtonColor(Color color, string buttonTag)
+    public void SetButtonColor(Color color, GameObject button)
     {
-        GameObject button = GameObject.FindGameObjectWithTag(buttonTag);
-
         MeshRenderer[] renderers = button.GetComponents<MeshRenderer>();
         foreach (MeshRenderer renderer in renderers)
         {
             renderer.material.color = color;
         }
     }
-
 
 
 
@@ -147,17 +135,23 @@ public class Hive : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.F6))
 		{
-			TextMeshProUGUI buttonText = buttons[(int)selectedButtonL].GetComponentInChildren<TextMeshProUGUI>();
-			string character = buttonText.text;
-			inputField.text += character.ToString();
-		}
+            if (selectedButtonL != null)
+            {
+                TextMeshProUGUI buttonText = selectedButtonL.GetComponentInChildren<TextMeshProUGUI>();
+                string character = buttonText.text;
+                inputField.text += character;
+            }
+        }
 
 		if (Input.GetKeyDown(KeyCode.F1))
 		{
-			TextMeshProUGUI buttonText = buttons[(int)selectedButtonR].GetComponentInChildren<TextMeshProUGUI>();
-			string character = buttonText.text;
-			inputField.text += character.ToString();
-		}
+            if (selectedButtonR != null)
+            {
+                TextMeshProUGUI buttonText = selectedButtonR.GetComponentInChildren<TextMeshProUGUI>();
+                string character = buttonText.text;
+                inputField.text += character;
+            }
+        }
 
 		// Handle backspace key
 		if (Input.GetKeyDown(KeyCode.F2))
