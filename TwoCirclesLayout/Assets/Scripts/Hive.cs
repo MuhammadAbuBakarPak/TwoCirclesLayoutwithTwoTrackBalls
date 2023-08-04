@@ -23,7 +23,7 @@ public class Hive : MonoBehaviour
 	private const int leftTrackballDeviceID = 65599;
 	private const int rightTrackballDeviceID = 65597;
 
-    private const float cursorSpeed = 1.5f;
+    private const float cursorSpeed = 2.5f;
 
     [HideInInspector] public GameObject selectedButtonR;
     [HideInInspector] public GameObject selectedButtonL;
