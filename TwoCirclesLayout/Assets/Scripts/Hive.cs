@@ -25,8 +25,8 @@ public class Hive : MonoBehaviour
 
     private const float cursorSpeed = 1.5f;
 
-    public GameObject selectedButtonR;
-    public GameObject selectedButtonL;
+    [HideInInspector] public GameObject selectedButtonR;
+    [HideInInspector] public GameObject selectedButtonL;
 
     private float startTime = 0.0f;
 
