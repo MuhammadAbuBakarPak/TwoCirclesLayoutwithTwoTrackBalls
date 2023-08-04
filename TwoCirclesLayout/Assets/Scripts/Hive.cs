@@ -15,7 +15,6 @@ public class Hive : MonoBehaviour
 
     public TMP_InputField inputField;
 	public TextMeshProUGUI textField;
-	public GameObject[] buttons;
 
     public GameObject leftCursor;
     public GameObject rightCursor;
@@ -23,7 +22,7 @@ public class Hive : MonoBehaviour
 	private const int leftTrackballDeviceID = 65599;
 	private const int rightTrackballDeviceID = 65597;
 
-    private const float cursorSpeed = 2.5f;
+    private const float cursorSpeed = 2.0f;
 
     [HideInInspector] public GameObject selectedButtonR;
     [HideInInspector] public GameObject selectedButtonL;
