@@ -25,7 +25,7 @@ public class Hive : MonoBehaviour
 	private const int leftTrackballDeviceID = 65599;
 	private const int rightTrackballDeviceID = 65597;
 
-    private const float cursorSpeed = 2.0f;
+    private const float cursorSpeed = 2.5f;
 
     [HideInInspector] public GameObject selectedButtonR;
     [HideInInspector] public GameObject selectedButtonL;
@@ -101,7 +101,6 @@ public class Hive : MonoBehaviour
         }
 	}
 
-
     private void UpdateCursorPosition(Transform cursor, Vector2 move, Vector3 cursorCenter)
     {
         Vector3 currentPosition = cursor.transform.localPosition;
@@ -113,8 +112,6 @@ public class Hive : MonoBehaviour
         cursor.transform.localPosition = currentPosition;
     }
 
-
-
     public void SetButtonColor(Color color, GameObject button)
     {
         MeshRenderer[] renderers = button.GetComponents<MeshRenderer>();
@@ -123,7 +120,6 @@ public class Hive : MonoBehaviour
             renderer.material.color = color;
         }
     }
-
 
 
     private void LateUpdate()
