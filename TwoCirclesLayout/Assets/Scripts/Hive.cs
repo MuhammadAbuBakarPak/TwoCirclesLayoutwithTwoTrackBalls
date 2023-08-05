@@ -16,8 +16,11 @@ public class Hive : MonoBehaviour
     public TMP_InputField inputField;
 	public TextMeshProUGUI textField;
 
-    public GameObject leftCursor;
-    public GameObject rightCursor;
+    public Transform leftCursor;
+    public Transform rightCursor;
+
+	private Vector3 leftCircleCenter;
+	private Vector3 rightCircleCenter;
 
 	private const int leftTrackballDeviceID = 65599;
 	private const int rightTrackballDeviceID = 65597;
@@ -62,6 +65,9 @@ public class Hive : MonoBehaviour
 	{
 		textField.text = sentences [currentSentenceIndex];
 		inputField.ActivateInputField ();
+
+		leftCircleCenter = leftCursor.localPosition;
+		rightCircleCenter = rightCursor.localPosition;
 	}
 
 
@@ -86,23 +92,26 @@ public class Hive : MonoBehaviour
 
 		if (moveL != Vector2.zero)
 		{
-			UpdateCursorPosition(leftCursor,moveL);
+            UpdateCursorPosition(leftCursor, moveL, leftCircleCenter);
         }
 
-		if (moveR != Vector2.zero)
+        if (moveR != Vector2.zero)
 		{
-			UpdateCursorPosition(rightCursor, moveR);
-		}
+            UpdateCursorPosition(rightCursor, moveR, rightCircleCenter);
+        }
 	}
 
 
-	private void UpdateCursorPosition(GameObject cursor, Vector2 move)
-	{
-		Vector3 currentPosition = cursor.transform.localPosition;
-		currentPosition.x += move.x * cursorSpeed * Time.deltaTime;
-		currentPosition.y -= move.y * cursorSpeed * Time.deltaTime;
-		cursor.transform.localPosition = currentPosition;
-	}
+    private void UpdateCursorPosition(Transform cursor, Vector2 move, Vector3 cursorCenter)
+    {
+        Vector3 currentPosition = cursor.transform.localPosition;
+        currentPosition.x += move.x * cursorSpeed * Time.deltaTime;
+        currentPosition.y -= move.y * cursorSpeed * Time.deltaTime;
+
+		Vector3 offset = currentPosition - cursorCenter;
+        currentPosition = cursorCenter + Vector3.ClampMagnitude(offset, 4.5f);
+        cursor.transform.localPosition = currentPosition;
+    }
 
 
 
